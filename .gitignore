@@ -8,4 +8,3 @@
 .env.development
 .env.test
 .env.production
-*.md
