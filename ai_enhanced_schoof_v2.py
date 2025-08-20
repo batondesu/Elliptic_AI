@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-AI-enhanced Schoof's Algorithm v2.0
-- Sử dụng dataset chuẩn với 24 đặc trưng toán học
-- Deep Neural Network (10 hidden layers: 512->384->256->192->128->96->64->32->16->8) dự đoán δ
+AI-enhanced Schoof's Algorithm v2.0 (Enhanced)
+- Sử dụng dataset với 92 đặc trưng toán học nâng cao
+- Deep Neural Network (12 hidden layers với residual connections) dự đoán δ
 - CM/non-CM classifier chính xác hơn
 - Thu hẹp khoảng Hasse dựa trên dự đoán để hỗ trợ tăng tốc đếm điểm
 """
@@ -29,73 +29,21 @@ def ensure_image_dir():
     os.makedirs('image', exist_ok=True)
 
 class SchoofFeatureExtractor:
-    """Trích xuất đặc trưng từ dataset Schoof chuẩn."""
+    """Trích xuất đặc trưng từ dataset Schoof với 92 features."""
     
     def __init__(self, feature_names: List[str]):
         self.feature_names = feature_names
         self.feature_count = len(feature_names)
     
     def extract_from_raw(self, p: int, A: int, B: int) -> np.ndarray:
-        """Trích xuất đặc trưng từ p, A, B (tương tự generate_schoof_dataset)"""
-        # Đây là phiên bản đơn giản, trong thực tế cần tính toán đầy đủ
-        features = np.zeros(self.feature_count, dtype=np.float32)
-        
-        # Đặc trưng cơ bản
-        features[0] = float(p)  # p
-        features[1] = float(A)  # A
-        features[2] = float(B)  # B
-        
-        # Discriminant
-        discriminant = (4 * pow(A, 3, p) + 27 * pow(B, 2, p)) % p
-        features[3] = float(discriminant)  # discriminant
-        features[4] = discriminant / p  # discriminant_ratio
-        
-        # J-invariant (đơn giản)
-        if A != 0 or B != 0:
-            try:
-                num = (1728 * (4 * pow(A, 3, p))) % p
-                den = discriminant
-                if den != 0:
-                    inv = pow(den, -1, p)
-                    j_inv = (num * inv) % p
-                    features[5] = float(j_inv)  # j_invariant
-                    features[6] = float(j_inv) / p  # j_invariant_ratio
-            except:
-                pass
-        
-        # Modular arithmetic
-        features[7] = float(A % 3)  # A_mod_3
-        features[8] = float(B % 3)  # B_mod_3
-        features[9] = float(p % 3)  # p_mod_3
-        features[10] = float(A % 4)  # A_mod_4
-        features[11] = float(B % 4)  # B_mod_4
-        features[12] = float(p % 4)  # p_mod_4
-        
-        # Tương tác
-        features[13] = float((A * B) % p)  # A_times_B
-        features[14] = float((A * A) % p)  # A_squared
-        features[15] = float((B * B) % p)  # B_squared
-        
-        # Tỷ lệ
-        features[16] = A / p  # A_over_p
-        features[17] = B / p  # B_over_p
-        features[18] = (A + B) / p  # A_plus_B_over_p
-        
-        # Logarit
-        features[19] = math.log(p)  # log_p
-        features[20] = math.log(abs(A) + 1)  # log_A
-        features[21] = math.log(abs(B) + 1)  # log_B
-        
-        # Trigonometric
-        features[22] = math.sin(A / p * math.pi)  # sin_A_over_p
-        features[23] = math.cos(B / p * math.pi)  # cos_B_over_p
-        
-        return features
+        """Trích xuất 92 features từ p, A, B"""
+        from enhanced_features import extract_enhanced_features
+        return extract_enhanced_features(p, A, B)
 
 class DeltaRegressorV2:
-    """Deep NN dự đoán δ với dataset chuẩn."""
+    """Deep NN dự đoán δ với 92 features."""
     
-    def __init__(self, feature_count: int = 24):
+    def __init__(self, feature_count: int = 92):
         self.model = None
         self.scaler = StandardScaler()
         self.feature_count = feature_count
@@ -104,23 +52,36 @@ class DeltaRegressorV2:
         inputs = layers.Input(shape=(self.feature_count,), name='features')
         x = inputs
         
-        # 10 hidden layers: 512->384->256->192->128->96->64->32->16->8
-        for units in [512, 384, 256, 192, 128, 96, 64, 32, 16, 8]:
-            x = layers.Dense(units, activation='relu')(x)
-            x = layers.BatchNormalization()(x)
-            x = layers.Dropout(0.15)(x)
+        # 12 hidden layers với residual connections
+        # 1024 -> 512 -> 256 -> 128 -> 64 -> 32 -> 16 -> 8 -> 16 -> 32 -> 64 -> 128
+        layer_sizes = [1024, 512, 256, 128, 64, 32, 16, 8, 16, 32, 64, 128]
+        
+        for i, units in enumerate(layer_sizes):
+            # Residual connection cho layers lớn
+            if i < 6 and units >= 64:
+                residual = x
+                x = layers.Dense(units, activation='relu')(x)
+                x = layers.BatchNormalization()(x)
+                x = layers.Dropout(0.2)(x)
+                # Add residual connection
+                if x.shape[-1] == residual.shape[-1]:
+                    x = layers.Add()([x, residual])
+            else:
+                x = layers.Dense(units, activation='relu')(x)
+                x = layers.BatchNormalization()(x)
+                x = layers.Dropout(0.15)(x)
         
         outputs = layers.Dense(1, activation='linear', name='delta')(x)
         model = models.Model(inputs=inputs, outputs=outputs, name='delta_regressor_v2')
         model.compile(
-            optimizer=optimizers.Adam(learning_rate=1e-3), 
-            loss='mse', 
-            metrics=['mae']
+            optimizer=optimizers.AdamW(learning_rate=1e-3, weight_decay=1e-4), 
+            loss='huber',  # Huber loss cho robustness
+            metrics=['mae', 'mse']
         )
         return model
 
-    def fit(self, X: np.ndarray, y_delta: np.ndarray, epochs: int = 50, batch_size: int = 256) -> Dict[str, Any]:
-        print(f"Training Delta Regressor v2.0 (24 features, 10 hidden layers)...")
+    def fit(self, X: np.ndarray, y_delta: np.ndarray, epochs: int = 100, batch_size: int = 128) -> Dict[str, Any]:
+        print(f"Training Delta Regressor v2.0 (92 features, 12 hidden layers)...")
         print(f"Dataset: X={X.shape}, y={y_delta.shape}")
         
         X_train, X_val, y_train, y_val = train_test_split(X, y_delta, test_size=0.2, random_state=42)
@@ -130,8 +91,8 @@ class DeltaRegressorV2:
         self.model = self._build()
         
         # Callbacks
-        early = callbacks.EarlyStopping(monitor='val_loss', patience=8, restore_best_weights=True)
-        reduce = callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, min_lr=1e-6)
+        early = callbacks.EarlyStopping(monitor='val_loss', patience=15, restore_best_weights=True)
+        reduce = callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=8, min_lr=1e-6)
         
         start_time = time.time()
         hist = self.model.fit(
@@ -150,11 +111,11 @@ class DeltaRegressorV2:
 
     def evaluate(self, X: np.ndarray, y_delta: np.ndarray) -> Dict[str, float]:
         X_s = self.scaler.transform(X)
-        loss, mae = self.model.evaluate(X_s, y_delta, verbose=0)
+        loss, mae, mse = self.model.evaluate(X_s, y_delta, verbose=0)
         return {
-            'mse': float(loss), 
+            'mse': float(mse), 
             'mae': float(mae), 
-            'rmse': float(np.sqrt(loss))
+            'rmse': float(np.sqrt(mse))
         }
 
     def predict_delta(self, features: np.ndarray) -> float:
@@ -170,9 +131,9 @@ class DeltaRegressorV2:
         self.scaler = joblib.load(scaler_path)
 
 class CMClassifierV2:
-    """CM/non-CM classifier với dataset chuẩn."""
+    """CM/non-CM classifier với 92 features."""
     
-    def __init__(self, feature_count: int = 24):
+    def __init__(self, feature_count: int = 92):
         self.model = None
         self.scaler = StandardScaler()
         self.feature_count = feature_count
@@ -181,18 +142,18 @@ class CMClassifierV2:
         inputs = layers.Input(shape=(self.feature_count,))
         x = inputs
         
-        # 3 hidden layers cho classifier
-        for units in [128, 64, 32]:
+        # 5 hidden layers cho classifier
+        for units in [256, 128, 64, 32, 16]:
             x = layers.Dense(units, activation='relu')(x)
             x = layers.BatchNormalization()(x)
-            x = layers.Dropout(0.2)(x)
+            x = layers.Dropout(0.25)(x)
         
         outputs = layers.Dense(1, activation='sigmoid')(x)
         model = models.Model(inputs=inputs, outputs=outputs, name='cm_classifier_v2')
         model.compile(
-            optimizer=optimizers.Adam(1e-3), 
+            optimizer=optimizers.AdamW(1e-3, weight_decay=1e-4), 
             loss='binary_crossentropy', 
-            metrics=['accuracy']
+            metrics=['accuracy']  # Chỉ dùng accuracy, bỏ precision, recall
         )
         return model
 
@@ -290,17 +251,17 @@ class AISchoofAssistantV2:
         }
 
 def load_schoof_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, List[str]]:
-    """Tải dataset Schoof chuẩn."""
-    if not all(os.path.exists(f) for f in ['schoof_data_X.npy', 'schoof_data_delta.npy', 'schoof_data_cm.npy']):
-        raise FileNotFoundError('Không tìm thấy dataset Schoof. Hãy chạy generate_schoof_dataset.py trước.')
+    """Tải dataset Schoof với 92 features."""
+    if not all(os.path.exists(f) for f in ['schoof_data_X_enhanced.npy', 'schoof_data_delta.npy', 'schoof_data_cm.npy']):
+        raise FileNotFoundError('Không tìm thấy dataset Schoof enhanced. Hãy chạy generate_schoof_dataset.py trước.')
     
-    X = np.load('schoof_data_X.npy')
+    X = np.load('schoof_data_X_enhanced.npy')
     y_delta = np.load('schoof_data_delta.npy')
     y_tilde_delta = np.load('schoof_data_tilde_delta.npy')
     y_cm = np.load('schoof_data_cm.npy')
     
     # Đọc tên đặc trưng
-    with open('schoof_feature_names.txt', 'r') as f:
+    with open('schoof_feature_names_enhanced.txt', 'r') as f:
         feature_names = [line.strip() for line in f.readlines()]
     
     return X, y_delta, y_tilde_delta, y_cm, feature_names
@@ -351,12 +312,12 @@ def plot_training_history(hist_reg, hist_clf):
 
 def main():
     ensure_image_dir()
-    print('AI-ENHANCED SCHOOF v2.0 - TRAINING')
-    print('=' * 60)
+    print('AI-ENHANCED SCHOOF v2.0 (ENHANCED) - TRAINING')
+    print('=' * 70)
     
     # Tải dataset
     X, y_delta, y_tilde_delta, y_cm, feature_names = load_schoof_dataset()
-    print(f'Loaded Schoof dataset: X={X.shape}, features={len(feature_names)}')
+    print(f'Loaded Enhanced Schoof dataset: X={X.shape}, features={len(feature_names)}')
     print(f'Feature names: {feature_names[:5]}...{feature_names[-5:]}')
     
     # Khởi tạo feature extractor
@@ -364,20 +325,20 @@ def main():
     
     # Huấn luyện Regressor (δ)
     reg = DeltaRegressorV2(feature_count=len(feature_names))
-    print('\nTraining Delta Regressor v2.0...')
+    print('\nTraining Delta Regressor v2.0 (Enhanced)...')
     start = time.time()
-    reg_hist = reg.fit(X, y_delta, epochs=40, batch_size=256)
+    reg_hist = reg.fit(X, y_delta, epochs=100, batch_size=128)
     eval_reg = reg.evaluate(X, y_delta)
     reg.save()
-    print(f"Regressor v2.0 saved. Eval: {eval_reg}")
+    print(f"Regressor v2.0 (Enhanced) saved. Eval: {eval_reg}")
     print(f'Time: {time.time()-start:.1f}s')
     
     # Huấn luyện CM Classifier
     clf = CMClassifierV2(feature_count=len(feature_names))
-    print('\nTraining CM Classifier v2.0...')
-    clf_hist = clf.fit(X, y_cm, epochs=25, batch_size=256)
+    print('\nTraining CM Classifier v2.0 (Enhanced)...')
+    clf_hist = clf.fit(X, y_cm, epochs=50, batch_size=128)
     clf.save()
-    print('CM Classifier v2.0 saved.')
+    print('CM Classifier v2.0 (Enhanced) saved.')
     
     # Vẽ biểu đồ
     plot_training_history(reg_hist['history'], clf_hist['history'])
@@ -390,7 +351,20 @@ def main():
         (17, 5, 3),
         (101, 23, 45),
         (257, 67, 89),
-        (499, 123, 456)
+        (499, 123, 456),
+        (503, 127, 461),
+        (857, 281, 733),
+        (1003, 341, 881),
+        (2011, 523, 1033),
+        (4003, 991, 2011),
+        (6001, 1627, 3041),
+        (7001, 1979, 3581),
+        (8009, 2407, 4129),
+        (9001, 2729, 4661),
+        (13007, 4261, 8811),
+        (15001, 4261, 8811),
+        (16001, 4261, 8811),
+        (19001, 4261, 8811)
     ]
     
     print('\nHasse narrowing demo:')
@@ -402,9 +376,12 @@ def main():
         print(f'  Reduction: {sug["width_reduction_factor"]:.2f}x')
         print(f'  CM prob: {sug["cm_probability"]:.4f}')
         print(f'  δ pred: {sug["delta_prediction"]:.2f}')
+        print(f'  Ket qua thuc te: {sug["N_est"]}')
+        print(f'  Chenh lech: {abs(sug["N_est"] - (p + 1))} (so diem)')
+        print(f'  Delta Reduction: {abs(sug["delta_prediction"] - (p + 1)):.2f}')
         print()
     
-    print('🎉 Done.')
+    print('🎉 AI-Enhanced Schoof v2.0 (Enhanced) training completed!')
 
 if __name__ == '__main__':
     main() 

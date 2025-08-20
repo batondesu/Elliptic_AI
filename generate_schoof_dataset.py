@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
-Sinh dataset chuẩn cho AI-enhanced Schoof Algorithm
-- Tính toán chính xác δ (delta) thay vì δ̃ (tilde delta)
-- Thêm đặc trưng toán học quan trọng: j-invariant, discriminant, CM properties
-- Phân loại CM/non-CM chính xác hơn
-- Tạo dataset đa dạng với phạm vi p rộng hơn
+Sinh thêm dữ liệu và nối vào dataset hiện có
+- Giữ nguyên dataset cũ
+- Sinh thêm dữ liệu mới
+- Nối vào cuối dataset hiện có
 """
 
 import numpy as np
@@ -26,8 +25,14 @@ def count_points_accurate(A: int, B: int, p: int) -> int:
 	# Với r != 0: nếu là bình phương (Legendre symbol = 1) thì có 2 nghiệm
 	non_zero = r_values[r_values != 0]
 	for r in non_zero:
-		if legendre_symbol(int(r), p) == 1:
-			c += 2
+		try:
+			if legendre_symbol(int(r), p) == 1:
+				c += 2
+		except (KeyboardInterrupt, SystemExit):
+			raise
+		except Exception:
+			# Bỏ qua lỗi legendre_symbol, coi như không phải bình phương
+			continue
 	return c
 
 def calculate_delta(A: int, B: int, p: int) -> float:
@@ -93,46 +98,72 @@ def extract_advanced_features(p: int, A: int, B: int) -> Dict[str, float]:
 	features['cos_B_over_p'] = math.cos(B / p * math.pi)
 	return features
 
-def generate_schoof_dataset(max_p: int = 1000,
-						  samples_per_p: int = 50,
-						  target_samples: int = 50000,
-						  select_primes_count: Optional[int] = None) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, List[str]]:
-	"""Sinh dataset chuẩn cho Schoof algorithm (hỗ trợ chọn ~N primes rải đều)."""
-	    print(f"SINH DATASET CHUẨN CHO SCHOOF ALGORITHM")
-	    print(f"Tham số: max_p={max_p:,}, samples_per_p≈{samples_per_p}, target={target_samples:,}, select_primes_count={select_primes_count}")
+def load_existing_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, List[str]]:
+	"""Tải dataset hiện có"""
+	print("Đang tải dataset hiện có...")
+	
+	if not os.path.exists('schoof_data_X.npy'):
+		print("Không tìm thấy dataset hiện có. Tạo dataset mới.")
+		return np.array([]), np.array([]), np.array([]), np.array([]), []
+	
+	X = np.load('schoof_data_X.npy')
+	y_delta = np.load('schoof_data_delta.npy')
+	y_tilde = np.load('schoof_data_tilde_delta.npy')
+	y_cm = np.load('schoof_data_cm.npy')
+	
+	feature_names = []
+	if os.path.exists('schoof_feature_names.txt'):
+		with open('schoof_feature_names.txt', 'r') as f:
+			feature_names = [line.strip() for line in f.readlines()]
+	
+	print(f"Dataset hiện có: {len(X):,} mẫu")
+	return X, y_delta, y_tilde, y_cm, feature_names
+
+def generate_additional_data(existing_primes: set, max_p: int = 10000,
+						   ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, List[str]]:
+	"""Sinh thêm dữ liệu mới với primes chưa có"""
+	print(f"SINH THÊM DỮ LIỆU MỚI")
+	print(f"Tham số: max_p={max_p:,}")
 	print("=" * 60)
 
 	start_time = time.time()
 	all_primes = list(primerange(3, max_p + 1))
-	if select_primes_count and len(all_primes) > select_primes_count:
-		step = max(1, len(all_primes) // select_primes_count)
-		primes = all_primes[::step][:select_primes_count]
-		        print(f"Chọn rải đều {len(primes)}/{len(all_primes)} primes")
-	else:
-		primes = all_primes
-		        print(f"Sử dụng toàn bộ {len(primes)} primes")
+	
+	# Lọc ra primes chưa có trong dataset hiện tại
+	new_primes = [p for p in all_primes if p not in existing_primes]
+	print(f"Tìm thấy {len(new_primes):,} primes mới (từ {len(all_primes):,} primes tổng)")
+	
+	if len(new_primes) == 0:
+		print("Không có primes mới để sinh dữ liệu!")
+		return np.array([]), np.array([]), np.array([]), np.array([]), []
 
 	data: List[List[float]] = []
 	feature_names: Optional[List[str]] = None
 	valid_samples = 0
 
-	for i, p in enumerate(primes):
-		if i % 10 == 0:
+	for i, p in enumerate(new_primes):
+		if i % 20 == 0:
 			elapsed = time.time() - start_time
-			            print(f"p={p:,} ({i+1}/{len(primes)}) — đã sinh {valid_samples:,} mẫu — {elapsed:.1f}s")
+			print(f"p={p:,} ({i+1}/{len(new_primes)}) — đã sinh {valid_samples:,} mẫu — {elapsed:.1f}s")
 
-		# Số mẫu động theo kích thước p để đảm bảo thời gian
-		if p >= 50000:
-			current_samples = random.randint(1, 2)
+		# Số mẫu động theo kích thước p
+		if p >= 200000:
+			current_samples = random.randint(2, 5)  # Ít mẫu cho p rất lớn
+		elif p >= 100000:
+			current_samples = random.randint(3, 8)
+		elif p >= 50000:
+			current_samples = random.randint(5, 15)
 		elif p >= 10000:
-			current_samples = random.randint(1, 3)
+			current_samples = random.randint(10, 30)
 		elif p >= 1000:
-			current_samples = random.randint(5, 20)
+			current_samples = random.randint(50, 100)
+		elif p >= 100:
+			current_samples = random.randint(300, 800)
 		else:
-			current_samples = min(samples_per_p, 50)
+			current_samples = random.randint(50, 100)
 
 		attempts = 0
-		max_attempts = current_samples * 100
+		max_attempts = current_samples * 200
 		p_samples = 0
 
 		while p_samples < current_samples and attempts < max_attempts:
@@ -159,10 +190,6 @@ def generate_schoof_dataset(max_p: int = 1000,
 			valid_samples += 1
 			attempts += 1
 
-		if target_samples and valid_samples >= target_samples:
-			break
-	if target_samples and valid_samples >= target_samples:
-		pass
 
 	data_np = np.array(data, dtype=np.float32)
 	feat_cnt = len(feature_names) if feature_names else 0
@@ -173,47 +200,91 @@ def generate_schoof_dataset(max_p: int = 1000,
 
 	elapsed_time = time.time() - start_time
 	print("\n" + "=" * 60)
-	    print("HOÀN THÀNH SINH DATASET!")
+	print("HOÀN THÀNH SINH DỮ LIỆU MỚI!")
 	print("=" * 60)
-	    print(f"Số mẫu đã sinh: {len(data_np):,}")
-	    print(f"Số đặc trưng: {feat_cnt}")
-	    print(f"Thời gian: {elapsed_time:.1f}s")
+	print(f"Số mẫu mới: {len(data_np):,}")
+	print(f"Số đặc trưng: {feat_cnt}")
+	print(f"Thời gian: {elapsed_time:.1f}s")
 	if elapsed_time > 0:
-		        print(f"Tốc độ: {len(data_np)/elapsed_time:.1f} mẫu/giây")
+		print(f"Tốc độ: {len(data_np)/elapsed_time:.1f} mẫu/giây")
 	print(f"   Phạm vi p: [{X[:,0].min():.0f}, {X[:,0].max():.0f}]")
 	print(f"   CM curves: {int(y_cm.sum())} / {len(y_cm)} ({100*y_cm.sum()/len(y_cm):.2f}%)")
 	return X, y_delta, y_tilde, y_cm, (feature_names or [])
 
-def save_schoof_dataset(X: np.ndarray, y_delta: np.ndarray, y_tilde_delta: np.ndarray,
-						 y_cm: np.ndarray, feature_names: List[str]):
-	"""Lưu dataset Schoof"""
-	    print("\nĐANG LƯU DATASET...")
-	np.save('schoof_data_X.npy', X)
-	np.save('schoof_data_delta.npy', y_delta)
-	np.save('schoof_data_tilde_delta.npy', y_tilde_delta)
-	np.save('schoof_data_cm.npy', y_cm)
+def merge_and_save_datasets(existing_X: np.ndarray, existing_y_delta: np.ndarray, existing_y_tilde: np.ndarray, existing_y_cm: np.ndarray,
+						   new_X: np.ndarray, new_y_delta: np.ndarray, new_y_tilde: np.ndarray, new_y_cm: np.ndarray,
+						   feature_names: List[str]):
+	"""Nối dataset mới vào dataset hiện có và lưu"""
+	print("\nĐANG NỐI VÀ LƯU DATASET...")
+	
+	if len(existing_X) == 0:
+		# Nếu không có dataset cũ, chỉ lưu dataset mới
+		final_X = new_X
+		final_y_delta = new_y_delta
+		final_y_tilde = new_y_tilde
+		final_y_cm = new_y_cm
+	else:
+		# Nối dataset mới vào cuối dataset cũ
+		final_X = np.vstack([existing_X, new_X])
+		final_y_delta = np.concatenate([existing_y_delta, new_y_delta])
+		final_y_tilde = np.concatenate([existing_y_tilde, new_y_tilde])
+		final_y_cm = np.concatenate([existing_y_cm, new_y_cm])
+	
+	# Lưu dataset tổng hợp
+	np.save('schoof_data_X.npy', final_X)
+	np.save('schoof_data_delta.npy', final_y_delta)
+	np.save('schoof_data_tilde_delta.npy', final_y_tilde)
+	np.save('schoof_data_cm.npy', final_y_cm)
+	
+	# Lưu feature names
 	with open('schoof_feature_names.txt', 'w') as f:
 		for name in feature_names:
 			f.write(name + '\n')
-	    print("Đã lưu dataset & feature names")
+	
+	print(f"Dataset tổng hợp: {len(final_X):,} mẫu")
+	print(f"  - Dataset cũ: {len(existing_X):,} mẫu")
+	print(f"  - Dataset mới: {len(new_X):,} mẫu")
+	print("Đã lưu dataset tổng hợp thành công!")
 
 def main():
 	"""Main function"""
-	    print("SCHOOF DATASET GENERATOR")
+	print("SINH THÊM DỮ LIỆU VÀ NỐI VÀO DATASET HIỆN CÓ")
 	print("=" * 60)
-	# Cấu hình lớn: max_p=100000, chọn ~500 primes, mục tiêu 30k-50k mẫu (thực tế tùy p)
-	max_p = 100000
-	select_primes_count = 500
-	target_samples = 30000  # có thể vượt/thiếu một chút do dynamic sampling
-	samples_per_p = 50  # chỉ áp dụng cho p nhỏ, p lớn sẽ giảm tự động
-	X, y_delta, y_tilde, y_cm, feature_names = generate_schoof_dataset(
+	
+	# Tải dataset hiện có
+	existing_X, existing_y_delta, existing_y_tilde, existing_y_cm, existing_feature_names = load_existing_dataset()
+	
+	# Lấy danh sách primes hiện có
+	existing_primes = set()
+	if len(existing_X) > 0:
+		existing_primes = set(existing_X[:, 0].astype(int))
+		print(f"Dataset hiện có chứa {len(existing_primes):,} primes khác nhau")
+	
+	# Cấu hình sinh thêm dữ liệu
+	max_p = 10000  # Tăng phạm vi p
+	print(f"Cấu hình sinh thêm:")
+	print(f"  - max_p: {max_p:,}")
+	print("=" * 60)
+	
+	# Sinh thêm dữ liệu
+	new_X, new_y_delta, new_y_tilde, new_y_cm, new_feature_names = generate_additional_data(
+		existing_primes=existing_primes,
 		max_p=max_p,
-		samples_per_p=samples_per_p,
-		target_samples=target_samples,
-		select_primes_count=select_primes_count
 	)
-	save_schoof_dataset(X, y_delta, y_tilde, y_cm, feature_names)
-	    print("\nDataset sẵn sàng cho huấn luyện v2!")
+	
+	if len(new_X) == 0:
+		print("Không sinh được dữ liệu mới!")
+		return
+	
+	# Nối và lưu dataset
+	feature_names = new_feature_names if len(existing_feature_names) == 0 else existing_feature_names
+	merge_and_save_datasets(
+		existing_X, existing_y_delta, existing_y_tilde, existing_y_cm,
+		new_X, new_y_delta, new_y_tilde, new_y_cm,
+		feature_names
+	)
+	
+	print("\nHoàn thành sinh thêm dữ liệu!")
 
 if __name__ == "__main__":
-	main() 
+	main()
