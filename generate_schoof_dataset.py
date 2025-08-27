@@ -102,18 +102,18 @@ def load_existing_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndar
 	"""Tải dataset hiện có"""
 	print("Đang tải dataset hiện có...")
 	
-	if not os.path.exists('schoof_data_X.npy'):
+	if not os.path.exists('schoof_data_X_cleaned.npy'):
 		print("Không tìm thấy dataset hiện có. Tạo dataset mới.")
 		return np.array([]), np.array([]), np.array([]), np.array([]), []
 	
-	X = np.load('schoof_data_X.npy')
+	X = np.load('schoof_data_X_cleaned.npy')
 	y_delta = np.load('schoof_data_delta.npy')
 	y_tilde = np.load('schoof_data_tilde_delta.npy')
 	y_cm = np.load('schoof_data_cm.npy')
 	
 	feature_names = []
-	if os.path.exists('schoof_feature_names.txt'):
-		with open('schoof_feature_names.txt', 'r') as f:
+	if os.path.exists('schoof_feature_names_cleaned.txt'):
+		with open('schoof_feature_names_cleaned.txt', 'r') as f:
 			feature_names = [line.strip() for line in f.readlines()]
 	
 	print(f"Dataset hiện có: {len(X):,} mẫu")
@@ -146,21 +146,21 @@ def generate_additional_data(existing_primes: set, max_p: int = 10000,
 			elapsed = time.time() - start_time
 			print(f"p={p:,} ({i+1}/{len(new_primes)}) — đã sinh {valid_samples:,} mẫu — {elapsed:.1f}s")
 
-		# Số mẫu động theo kích thước p
+		# Số mẫu động theo kích thước p (tăng để có nhiều data hơn)
 		if p >= 200000:
-			current_samples = random.randint(2, 5)  # Ít mẫu cho p rất lớn
+			current_samples = random.randint(5, 10)  # Tăng cho p rất lớn
 		elif p >= 100000:
-			current_samples = random.randint(3, 8)
+			current_samples = random.randint(10, 20)
 		elif p >= 50000:
-			current_samples = random.randint(5, 15)
+			current_samples = random.randint(15, 30)
 		elif p >= 10000:
-			current_samples = random.randint(10, 30)
+			current_samples = random.randint(30, 60)
 		elif p >= 1000:
-			current_samples = random.randint(50, 100)
+			current_samples = random.randint(100, 200)
 		elif p >= 100:
-			current_samples = random.randint(300, 800)
+			current_samples = random.randint(500, 1000)
 		else:
-			current_samples = random.randint(50, 100)
+			current_samples = random.randint(100, 200)
 
 		attempts = 0
 		max_attempts = current_samples * 200
@@ -231,13 +231,13 @@ def merge_and_save_datasets(existing_X: np.ndarray, existing_y_delta: np.ndarray
 		final_y_cm = np.concatenate([existing_y_cm, new_y_cm])
 	
 	# Lưu dataset tổng hợp
-	np.save('schoof_data_X.npy', final_X)
+	np.save('schoof_data_X_cleaned.npy', final_X)
 	np.save('schoof_data_delta.npy', final_y_delta)
 	np.save('schoof_data_tilde_delta.npy', final_y_tilde)
 	np.save('schoof_data_cm.npy', final_y_cm)
 	
 	# Lưu feature names
-	with open('schoof_feature_names.txt', 'w') as f:
+	with open('schoof_feature_names_cleaned.txt', 'w') as f:
 		for name in feature_names:
 			f.write(name + '\n')
 	
@@ -261,7 +261,7 @@ def main():
 		print(f"Dataset hiện có chứa {len(existing_primes):,} primes khác nhau")
 	
 	# Cấu hình sinh thêm dữ liệu
-	max_p = 10000  # Tăng phạm vi p
+	max_p = 50000  # Tăng phạm vi p để sinh thêm nhiều data
 	print(f"Cấu hình sinh thêm:")
 	print(f"  - max_p: {max_p:,}")
 	print("=" * 60)
