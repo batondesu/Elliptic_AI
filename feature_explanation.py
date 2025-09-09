@@ -7,6 +7,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 from ai_enhanced_schoof_v2 import load_schoof_dataset
+import math
+from sympy import legendre_symbol
+from typing import List
 
 def explain_features():
     """Giải thích chi tiết về features"""
@@ -211,6 +214,79 @@ def explain_features():
         'max_correlation': correlations[0][1] if correlations else 0,
         'min_correlation': correlations[-1][1] if correlations else 0
     }
+
+def j_invariant_mod_p(A: int, B: int, p: int) -> int:
+    """Tính j-invariant mod p"""
+    try:
+        discriminant = (-16 * (4 * pow(A, 3, p) + 27 * pow(B, 2, p))) % p
+        if discriminant == 0:
+            return 0
+        inv_disc = pow(discriminant, p - 2, p)
+        j = (1728 * 4 * pow(A, 3, p) * inv_disc) % p
+        return j
+    except:
+        return 0
+
+def extract_features(p: int, A: int, B: int) -> List[float]:
+    """Trích xuất 40 features từ (p, A, B)"""
+    features = []
+    
+    # Basic features (6)
+    features.extend([
+        float(p), float(A), float(B),
+        float(A % p), float(B % p),
+        float((4 * A**3 + 27 * B**2) % p)  # discriminant
+    ])
+    
+    # Logarithmic features (3)
+    features.extend([
+        math.log10(p), math.log10(max(1, abs(A))), math.log10(max(1, abs(B)))
+    ])
+    
+    # Ratios (4)
+    features.extend([
+        float(A / p), float(B / p),
+        float(A / max(1, abs(B))), float(B / max(1, abs(A)))
+    ])
+    
+    # Quadratic residues (3)
+    try:
+        features.extend([
+            float(legendre_symbol(A, p) if A % p != 0 else 0),
+            float(legendre_symbol(B, p) if B % p != 0 else 0),
+            float(legendre_symbol((4 * A**3 + 27 * B**2) % p, p))
+        ])
+    except:
+        features.extend([0.0, 0.0, 0.0])
+    
+    # Modular arithmetic (6)
+    features.extend([
+        float(A % 3), float(A % 5), float(A % 7),
+        float(B % 3), float(B % 5), float(B % 7)
+    ])
+    
+    # Powers mod p (6)
+    features.extend([
+        float(pow(A, 2, p)), float(pow(A, 3, p)), float(pow(A, 4, p)),
+        float(pow(B, 2, p)), float(pow(B, 3, p)), float(pow(B, 4, p))
+    ])
+    
+    # Combinations (6)
+    features.extend([
+        float((A + B) % p), float((A - B) % p), float((A * B) % p),
+        float((A**2 + B**2) % p), float((A**2 - B**2) % p), float((A**3 + B**3) % p)
+    ])
+    
+    # Advanced features (6)
+    j_inv = j_invariant_mod_p(A, B, p)
+    features.extend([
+        float(j_inv),
+        float((A + p) % (p + 1)), float((B + p) % (p + 1)),
+        float(math.gcd(abs(A), p)), float(math.gcd(abs(B), p)),
+        float(bin(p).count('1'))  # Hamming weight of p
+    ])
+    
+    return features[:40]  # Đảm bảo đúng 40 features
 
 if __name__ == '__main__':
     explain_features() 
