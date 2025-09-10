@@ -129,7 +129,7 @@ class DeltaRegressorV2:
         }
 
     def predict_delta(self, features: np.ndarray) -> float:
-        features_s = self.scaler.transform(features.reshape(1, -1))
+        features_s = self.scaler.transform(features)
         return float(self.model.predict(features_s, verbose=0)[0, 0])
 
     def save(self, model_path='schoof_ai_regressor_v2.h5', scaler_path='schoof_ai_regressor_v2_scaler.pkl'):
