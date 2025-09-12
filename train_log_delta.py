@@ -15,6 +15,7 @@ import tensorflow as tf
 from tensorflow.keras import layers, models, callbacks, optimizers
 import joblib
 import time
+import os
 from ai_enhanced_schoof_v2 import load_schoof_dataset
 
 def ensure_image_dir():
@@ -33,8 +34,8 @@ class LogDeltaRegressor:
         inputs = layers.Input(shape=(self.feature_count,), name='features')
         x = inputs
         
-        # Architecture tối ưu cho log target
-        layer_sizes = [512, 256, 128, 64, 32, 16]
+        # Architecture tối ưu cho log target - 10 lớp ẩn từ 512 xuống 8
+        layer_sizes = [512, 256, 128, 64, 32, 16, 8, 4, 2, 8]
         
         for i, units in enumerate(layer_sizes):
             x = layers.Dense(units, activation='relu',
@@ -46,13 +47,13 @@ class LogDeltaRegressor:
         model = models.Model(inputs=inputs, outputs=outputs, name='log_delta_regressor')
         
         model.compile(
-            optimizer=optimizers.Adam(learning_rate=1e-3),
+            optimizer=optimizers.Adam(learning_rate=5e-4),  # Giảm learning rate để ổn định hơn
             loss='mse',
             metrics=['mae']
         )
         return model
 
-    def fit(self, X: np.ndarray, y: np.ndarray, epochs: int = 300, batch_size: int = 64):
+    def fit(self, X: np.ndarray, y: np.ndarray, epochs: int = 500, batch_size: int = 32, resume: bool = True):
         print(f"Training Log Delta Regressor...")
         print(f"Dataset: X={X.shape}, y={y.shape}")
         
@@ -61,13 +62,30 @@ class LogDeltaRegressor:
         X_train_s = self.scaler.fit_transform(X_train)
         X_val_s = self.scaler.transform(X_val)
         
-        self.model = self._build()
+        # Kiểm tra xem có model cũ để resume không
+        model_path = 'best_log_delta_model.h5'
+        scaler_path = 'schoof_ai_regressor_log_delta_scaler.pkl'
         
-        # Callbacks
+        if resume and os.path.exists(model_path) and os.path.exists(scaler_path):
+            print("🔄 RESUMING TRAINING từ model cũ...")
+            try:
+                self.model = tf.keras.models.load_model(model_path)
+                self.scaler = joblib.load(scaler_path)
+                print("✅ Loaded existing model và scaler!")
+            except Exception as e:
+                print(f"⚠️ Không thể load model cũ: {e}")
+                print("🆕 Tạo model mới...")
+                self.model = self._build()
+        else:
+            print("🆕 Tạo model mới...")
+            self.model = self._build()
+        
+        # Callbacks - tăng patience để training lâu hơn
         callbacks_list = [
-            callbacks.EarlyStopping(monitor='val_loss', patience=40, restore_best_weights=True),
-            callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=15, min_lr=1e-6),
-            callbacks.ModelCheckpoint('best_log_delta_model.h5', monitor='val_loss', save_best_only=True)
+            callbacks.EarlyStopping(monitor='val_loss', patience=80, restore_best_weights=True, min_delta=1e-6),
+            callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.7, patience=25, min_lr=1e-7, verbose=1),
+            callbacks.ModelCheckpoint('best_log_delta_model.h5', monitor='val_loss', save_best_only=True, verbose=1),
+            callbacks.ModelCheckpoint('checkpoint_log_delta.h5', monitor='val_loss', save_best_only=False, verbose=0)  # Lưu mỗi epoch
         ]
         
         start_time = time.time()
@@ -162,7 +180,7 @@ def plot_training_results(hist):
     Epochs: {len(hist['loss'])}
     
     Target: log_abs_delta
-    Architecture: 512->256->128->64->32->16->1
+    Architecture: 512->256->128->64->32->16->8->4->2->8->1 (10 hidden layers)
     
     Status: {'✅ Good' if final_val_loss < 0.5 else '⚠️ Needs improvement'}
     """
@@ -181,10 +199,15 @@ def plot_training_results(hist):
     
     print("✅ Biểu đồ đã được lưu tại: image/log_delta_training_results.png")
 
-def main():
+def main(resume_training=True):
     """Main training function"""
     print("🚀 TRAIN MÔ HÌNH LOG_ABS_DELTA (HIỆU QUẢ CAO)")
     print("=" * 70)
+    
+    if resume_training:
+        print("🔄 Sẽ tiếp tục training từ model cũ (nếu có)")
+    else:
+        print("🆕 Sẽ train từ đầu (bỏ qua model cũ)")
     
     ensure_image_dir()
     
@@ -221,7 +244,7 @@ def main():
     print("=" * 50)
     
     regressor = LogDeltaRegressor(feature_count=len(feature_names))
-    hist = regressor.fit(X_clean, y_clean, epochs=300, batch_size=64)
+    hist = regressor.fit(X_clean, y_clean, epochs=500, batch_size=32, resume=resume_training)
     
     # Evaluate
     X_train, X_test, y_train, y_test = train_test_split(X_clean, y_clean, test_size=0.2, random_state=42)
@@ -270,4 +293,16 @@ def main():
     print(f"⏱️ Total time: {hist['training_time']:.1f}s")
 
 if __name__ == '__main__':
-    main()
+    import sys
+    
+    # Kiểm tra tham số command line
+    resume_training = True
+    if len(sys.argv) > 1:
+        if sys.argv[1] == '--fresh' or sys.argv[1] == '-f':
+            resume_training = False
+            print("🆕 Fresh training mode - sẽ train từ đầu")
+        elif sys.argv[1] == '--resume' or sys.argv[1] == '-r':
+            resume_training = True
+            print("🔄 Resume training mode - sẽ tiếp tục từ model cũ")
+    
+    main(resume_training)
