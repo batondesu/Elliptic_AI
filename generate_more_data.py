@@ -23,16 +23,15 @@ def count_points_accurate(A: int, B: int, p: int) -> int:
     r_values = (x_values * x_values % p * x_values % p + (A % p) * x_values + (B % p)) % p
     # Đếm r == 0 (mỗi điểm cộng 1)
     c += int(np.count_nonzero(r_values == 0))
-    # Với r != 0: nếu là bình phương (Legendre symbol = 1) thì có 2 nghiệm
+    # Với r != 0: nếu là bình phương (Euler criterion == 1) thì có 2 nghiệm
     non_zero = r_values[r_values != 0]
-    for r in non_zero:
-        try:
-            if legendre_symbol(int(r), p) == 1:
-                c += 2
-        except (KeyboardInterrupt, SystemExit):
-            raise
-        except Exception:
-            continue
+    if non_zero.size:
+        # Euler criterion: r^{(p-1)/2} ≡ 1 (mod p) <=> r là bình phương
+        exp = (p - 1) // 2
+        # Dùng list comprehension nhanh hơn sympy. Tránh exceptions.
+        euler_vals = np.array([pow(int(r), exp, p) for r in non_zero], dtype=np.int64)
+        residues = int(np.count_nonzero(euler_vals == 1))
+        c += 2 * residues
     return c
 
 def calculate_delta(A: int, B: int, p: int) -> float:
@@ -118,47 +117,51 @@ def extract_features(A: int, B: int, p: int) -> List[float]:
     
     return features[:40]  # Đảm bảo đúng 40 features
 
+def build_combined_feature_names() -> List[str]:
+    """Trả về danh sách tên features kết hợp (base + rich)."""
+    base_names = [
+        'A', 'B', 'p', 'A_mod_p', 'B_mod_p', 'discriminant',
+        'log_p', 'log_A', 'log_B',
+        'A_over_p', 'B_over_p', 'A_over_B', 'B_over_A',
+        'legendre_A', 'legendre_B', 'legendre_disc',
+        'A_mod_3', 'A_mod_5', 'A_mod_7', 'B_mod_3', 'B_mod_5', 'B_mod_7',
+        'A_pow_2', 'A_pow_3', 'A_pow_4', 'B_pow_2', 'B_pow_3', 'B_pow_4',
+        'A_plus_B', 'A_minus_B', 'A_times_B', 'A2_plus_B2', 'A2_minus_B2', 'A3_plus_B3',
+        'j_invariant', 'A_plus_p_mod', 'B_plus_p_mod', 'gcd_A_p', 'gcd_B_p', 'hamming_p'
+    ]
+
+    rich_names = [
+        # cơ bản (rich, để tránh trùng tên)
+        'rich_p', 'rich_A', 'rich_B',
+        # invariants
+        'c4', 'c6', 'disc_full', 'j_value',
+        'abs_c4', 'abs_c6', 'abs_disc',
+        'log_abs_c4', 'log_abs_c6', 'log_abs_disc', 'log_abs_j',
+        # hasse
+        'T', 'hasse_lower_full', 'hasse_upper_full', 'hasse_width_full',
+        # p modulo
+        'p_mod_3', 'p_mod_4', 'p_mod_5', 'p_mod_7', 'p_mod_8', 'p_mod_12', 'p_mod_24',
+        # legendre bổ sung
+        'legendre_A_rich', 'legendre_B_rich', 'legendre_disc_rich',
+        'legendre_A_plus_B', 'legendre_A_minus_B', 'legendre_A_times_B',
+        'legendre_c4', 'legendre_c6', 'legendre_neg_disc', 'legendre_2', 'legendre_neg1',
+        # mật độ nghiệm và zeros
+        'qres_density', 'qres_count', 'zeros_count',
+        # proxy trace mod ℓ và chuẩn hoá
+        'trace_mod3', 'trace_mod3_norm', 'trace_mod5', 'trace_mod5_norm',
+        'trace_mod7', 'trace_mod7_norm', 'trace_mod11', 'trace_mod11_norm',
+        # chuẩn hoá theo sqrt(p)
+        'A_over_sqrtp', 'B_over_sqrtp', 'T_over_sqrtp',
+        # j mod nhỏ (chuẩn hoá)
+        'j_mod3_norm', 'j_mod5_norm', 'j_mod7_norm', 'j_mod11_norm'
+    ]
+    return base_names + rich_names
+
 def is_valid_curve(A: int, B: int, p: int) -> bool:
     """Kiểm tra đường cong elliptic hợp lệ"""
     return (4 * A**3 + 27 * B**2) % p != 0
 
-def save_checkpoint(X_list, y_delta_list, y_tilde_list, y_cm_list, 
-                   total_generated, current_range_idx, checkpoint_file="checkpoint.pkl"):
-    """Lưu checkpoint để có thể resume sau"""
-    checkpoint_data = {
-        'X_list': X_list,
-        'y_delta_list': y_delta_list, 
-        'y_tilde_list': y_tilde_list,
-        'y_cm_list': y_cm_list,
-        'total_generated': total_generated,
-        'current_range_idx': current_range_idx,
-        'timestamp': time.time()
-    }
-    
-    with open(checkpoint_file, 'wb') as f:
-        pickle.dump(checkpoint_data, f)
-    
-    print(f"💾 Checkpoint saved: {total_generated} samples")
-
-def load_checkpoint(checkpoint_file="checkpoint.pkl"):
-    """Load checkpoint nếu có"""
-    if not os.path.exists(checkpoint_file):
-        return None, None, None, None, 0, 0
-    
-    try:
-        with open(checkpoint_file, 'rb') as f:
-            checkpoint_data = pickle.load(f)
-        
-        print(f"📂 Loaded checkpoint: {checkpoint_data['total_generated']} samples")
-        return (checkpoint_data['X_list'], 
-                checkpoint_data['y_delta_list'],
-                checkpoint_data['y_tilde_list'], 
-                checkpoint_data['y_cm_list'],
-                checkpoint_data['total_generated'],
-                checkpoint_data['current_range_idx'])
-    except Exception as e:
-        print(f"⚠️ Error loading checkpoint: {e}")
-        return None, None, None, None, 0, 0
+## Checkpoint logic removed: mỗi lần sinh sẽ chạy từ đầu và lưu trực tiếp theo lô
 
 def save_to_existing_dataset(X_list, y_delta_list, y_tilde_list, y_cm_list):
     """Lưu dữ liệu trực tiếp vào dataset hiện có"""
@@ -201,6 +204,46 @@ def save_to_existing_dataset(X_list, y_delta_list, y_tilde_list, y_cm_list):
     
     print(f"💾 Saved {len(X_list)} new samples to existing dataset")
     print(f"📊 Total dataset now: {X_combined.shape[0]} samples")
+
+def save_to_cm_dataset(X_list, y_delta_list, y_tilde_list, y_cm_list):
+    """Lưu dữ liệu CM vào các file CM riêng, KHÔNG đụng tới dataset non-CM chính.
+
+    Files:
+      - schoof_data_X_cm.npy
+      - schoof_data_delta_cm.npy
+      - schoof_data_tilde_delta_cm.npy
+      - schoof_data_cm_labels_cm.npy
+    """
+    if len(X_list) == 0:
+        return
+    X_new = np.array(X_list, dtype=np.float64)
+    y_delta_new = np.array(y_delta_list, dtype=np.float64)
+    y_tilde_new = np.array(y_tilde_list, dtype=np.float64)
+    y_cm_new = np.array(y_cm_list, dtype=np.float64)
+
+    try:
+        existing_X = np.load('schoof_data_X_cm.npy')
+        existing_y_delta = np.load('schoof_data_delta_cm.npy')
+        existing_y_tilde = np.load('schoof_data_tilde_delta_cm.npy')
+        existing_y_cm = np.load('schoof_data_cm_labels_cm.npy')
+        print(f"📂 Found existing CM data: {existing_X.shape[0]} samples")
+        X_combined = np.vstack([existing_X, X_new])
+        y_delta_combined = np.concatenate([existing_y_delta, y_delta_new])
+        y_tilde_combined = np.concatenate([existing_y_tilde, y_tilde_new])
+        y_cm_combined = np.concatenate([existing_y_cm, y_cm_new])
+    except FileNotFoundError:
+        print("📂 No existing CM data found, creating new CM dataset")
+        X_combined = X_new
+        y_delta_combined = y_delta_new
+        y_tilde_combined = y_tilde_new
+        y_cm_combined = y_cm_new
+
+    np.save('schoof_data_X_cm.npy', X_combined)
+    np.save('schoof_data_delta_cm.npy', y_delta_combined)
+    np.save('schoof_data_tilde_delta_cm.npy', y_tilde_combined)
+    np.save('schoof_data_cm_labels_cm.npy', y_cm_combined)
+
+    print(f"💾 Saved {len(X_list)} CM samples to CM dataset | total CM now: {X_combined.shape[0]}")
 
 def merge_all_batches():
     """Merge tất cả batch files thành dataset cuối cùng"""
@@ -297,42 +340,39 @@ def merge_all_batches():
 
 def generate_enhanced_data(target_samples: int = 50000, max_p: int = 200000, 
                           batch_size: int = 1000, auto_save_interval: int = 1000) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, List[str]]:
-    """Sinh data chuẩn với nhiều mẫu và checkpoint support"""
+    """Sinh data chuẩn với nhiều mẫu, không dùng checkpoint (sinh mới mỗi lần)."""
     print(f"🚀 Generating {target_samples} high-quality samples...")
     print(f"📦 Batch size: {batch_size}, Auto-save every: {auto_save_interval} samples")
     
-    # Try to load checkpoint first
-    X_list, y_delta_list, y_tilde_list, y_cm_list, total_generated, start_range_idx = load_checkpoint()
+    # Always start fresh
+    X_list = []
+    y_delta_list = []
+    y_tilde_list = []
+    y_cm_list = []
+    total_generated = 0
+    start_range_idx = 0
+    print("🆕 Starting fresh generation")
     
-    if X_list is None:
-        # Start fresh
-        X_list = []
-        y_delta_list = []
-        y_tilde_list = []
-        y_cm_list = []
-        total_generated = 0
-        start_range_idx = 0
-        print("🆕 Starting fresh generation")
-    else:
-        print(f"🔄 Resuming from checkpoint: {total_generated} samples")
-    
-    # Improved sampling strategy
+    # Improved sampling strategy - phân bổ theo tỉ lệ để tổng ≈ target_samples
+    proportions = [0.10, 0.20, 0.40, 0.20, 0.10]
+    raw_targets = [int(target_samples * p) for p in proportions]
+    # Điều chỉnh dư/thừa để đúng tổng
+    diff = target_samples - sum(raw_targets)
+    if diff != 0:
+        raw_targets[-1] += diff
     prime_ranges = [
-        (11, 100, 1000),      # Small primes: nhiều mẫu
-        (101, 1000, 1000),   # Medium primes: nhiều mẫu 
-        (1001, 10000, 1000), # Large primes: nhiều mẫu
-        (10001, 50000, 10000),# Very large: ít hơn
-        (50001, max_p, 5000)  # Huge primes: ít nhất
+        (11, 100, raw_targets[0]),
+        (101, 1000, raw_targets[1]),
+        (1001, 10000, raw_targets[2]),
+        (10001, 50000, raw_targets[3]),
+        (50001, max_p, raw_targets[4])
     ]
     
     batch_num = 1
     last_save_time = time.time()
     
     for range_idx, (min_p, max_p_range, samples_target) in enumerate(prime_ranges):
-        # Skip ranges that were already completed
-        if range_idx < start_range_idx:
-            continue
-            
+        # Always process sequentially from scratch
         print(f"\n📊 Range {min_p}-{max_p_range}: Target {samples_target} samples")
         
         primes = list(primerange(min_p, min(max_p_range + 1, max_p + 1)))
@@ -341,9 +381,9 @@ def generate_enhanced_data(target_samples: int = 50000, max_p: int = 200000,
             
         range_samples = 0
         attempts = 0
-        max_attempts = samples_target * 10
+        max_attempts = samples_target
         
-        while range_samples < samples_target and attempts < max_attempts:
+        while range_samples < samples_target and attempts < max_attempts and total_generated < target_samples:
             p = random.choice(primes)
             
             # Better A, B sampling
@@ -382,8 +422,11 @@ def generate_enhanced_data(target_samples: int = 50000, max_p: int = 200000,
                 
                 has_cm = j_inv in known_cm_j or abs(tilde_delta) > 1.8
                 
-                # Extract features
-                features = extract_features(A, B, p)
+                # Extract features (base + rich)
+                from feature_explanation import extract_features_rich
+                base = extract_features(A, B, p)
+                rich = extract_features_rich(p, A, B, sample_x=16)
+                features = list(base) + list(rich)
                 
                 # Add to dataset
                 X_list.append(features)
@@ -393,11 +436,6 @@ def generate_enhanced_data(target_samples: int = 50000, max_p: int = 200000,
                 
                 range_samples += 1
                 total_generated += 1
-                
-                # Auto-save checkpoint
-                if total_generated % auto_save_interval == 0:
-                    save_checkpoint(X_list, y_delta_list, y_tilde_list, y_cm_list, 
-                                  total_generated, range_idx)
                 
                 # Save to existing dataset when reaching batch_size
                 if len(X_list) >= batch_size:
@@ -416,32 +454,21 @@ def generate_enhanced_data(target_samples: int = 50000, max_p: int = 200000,
                 continue
         
         print(f"✅ Range {min_p}-{max_p_range}: Generated {range_samples} samples")
+        if total_generated >= target_samples:
+            print(f"⛔ Reached target_samples={target_samples}. Stopping...")
+            break
         
-        # Save checkpoint after each range
-        save_checkpoint(X_list, y_delta_list, y_tilde_list, y_cm_list, 
-                       total_generated, range_idx + 1)
+        # No checkpoint saving per range
     
     # Save remaining data to existing dataset
     if len(X_list) > 0:
         save_to_existing_dataset(X_list, y_delta_list, y_tilde_list, y_cm_list)
         print(f"💾 Final batch saved to existing dataset: {len(X_list)} samples")
     
-    # Clean up checkpoint
-    if os.path.exists("checkpoint.pkl"):
-        os.remove("checkpoint.pkl")
-        print("🧹 Cleaned up checkpoint file")
+    # No checkpoint cleanup
     
-    # Feature names
-    feature_names = [
-        'A', 'B', 'p', 'A_mod_p', 'B_mod_p', 'discriminant',
-        'log_p', 'log_A', 'log_B',
-        'A_over_p', 'B_over_p', 'A_over_B', 'B_over_A',
-        'legendre_A', 'legendre_B', 'legendre_disc',
-        'A_mod_3', 'A_mod_5', 'A_mod_7', 'B_mod_3', 'B_mod_5', 'B_mod_7',
-        'A_pow_2', 'A_pow_3', 'A_pow_4', 'B_pow_2', 'B_pow_3', 'B_pow_4',
-        'A_plus_B', 'A_minus_B', 'A_times_B', 'A2_plus_B2', 'A2_minus_B2', 'A3_plus_B3',
-        'j_invariant', 'A_plus_p_mod', 'B_plus_p_mod', 'gcd_A_p', 'gcd_B_p', 'hamming_p'
-    ]
+    # Feature names (base + rich)
+    feature_names = build_combined_feature_names()
     
     print(f"\n🎉 Generated {total_generated} new samples!")
     
@@ -520,12 +547,12 @@ def main():
     
     start_time = time.time()
     
-    # Generate new data với checkpoint support
+    # Generate new data (no checkpoint)
     new_X, new_y_delta, new_y_tilde, new_y_cm, feature_names = generate_enhanced_data(
-        target_samples=50000,  # Sinh 50k samples mới
-        max_p=200000,
-        batch_size=1000,       # Save mỗi 5k samples vào dataset hiện có
-        auto_save_interval=1000  # Checkpoint mỗi 1k samples
+        target_samples=150000,
+        max_p=300000,
+        batch_size=500,
+        auto_save_interval=500
     )
     
     if len(new_X) == 0:
@@ -536,10 +563,8 @@ def main():
     print(f"\n⏱️ Total time: {elapsed:.1f}s")
     print("✅ Data generation completed!")
     print("\n💡 Tips:")
-    print("  - Nếu bị ngắt, chạy lại script sẽ tự động resume từ checkpoint")
-    print("  - Dữ liệu được lưu trực tiếp vào dataset hiện có, không bị mất khi ngắt")
-    print("  - Checkpoint được lưu mỗi 1000 samples")
-    print("  - Dữ liệu được append vào file dataset hiện có")
+    print("  - Dữ liệu được lưu trực tiếp vào dataset hiện có theo lô")
+    print("  - Nếu dừng giữa chừng, phần đã lưu vẫn giữ nguyên")
 
 def merge_batches_only():
     """Chỉ merge các batch files thành dataset cuối cùng"""
@@ -547,12 +572,161 @@ def merge_batches_only():
     total_samples = merge_all_batches()
     print(f"✅ Merged {total_samples} samples from batch files")
 
+def generate_cm_samples(target_cm: int = 100000, max_p: int = 200000, batch_size: int = 500, sample_x: int = 16) -> int:
+    """Sinh thêm mẫu CM (~target_cm) trong khoảng p∈[11, max_p]. Ghi trực tiếp vào dataset.
+
+    Chiến lược: tạo các đường cong có j-invariant 0 (A=0) hoặc 1728 (B=0), đảm bảo không suy biến.
+    """
+    print("=" * 60)
+    print(f"🚀 GENERATE CM-ONLY SAMPLES: target={target_cm}, p∈[11,{max_p}]")
+    print("=" * 60)
+
+    primes = list(primerange(11, max_p + 1))
+    if not primes:
+        print("❌ No primes found in range")
+        return 0
+
+    X_list: List[List[float]] = []
+    y_delta_list: List[float] = []
+    y_tilde_list: List[float] = []
+    y_cm_list: List[float] = []
+
+    from feature_explanation import extract_features_rich
+
+    generated = 0
+    start_time = time.time()
+
+    while generated < target_cm:
+        p = random.choice(primes)
+        # Chọn CM dạng j=0 (A=0) hoặc j=1728 (B=0)
+        if random.random() < 0.5:
+            # j=0 → A=0, chọn B ≠ 0 mod p và discriminant != 0
+            A = 0
+            B = random.randint(1, p - 1)
+        else:
+            # j=1728 → B=0, chọn A ≠ 0 mod p và discriminant != 0
+            B = 0
+            A = random.randint(1, p - 1)
+
+        if not is_valid_curve(A, B, p):
+            continue
+
+        try:
+            delta = calculate_delta(A, B, p)
+            tilde_delta = calculate_tilde_delta(A, B, p)
+            # CM xác định theo j, không cần heuristic
+            has_cm = 1.0
+
+            base = extract_features(A, B, p)
+            rich = extract_features_rich(p, A, B, sample_x=sample_x)
+            features = list(base) + list(rich)
+
+            X_list.append(features)
+            y_delta_list.append(delta)
+            y_tilde_list.append(tilde_delta)
+            y_cm_list.append(has_cm)
+            generated += 1
+
+            if len(X_list) >= batch_size:
+                # Lưu vào bộ CM riêng, không chạm vào dataset non-CM chính
+                save_to_cm_dataset(X_list, y_delta_list, y_tilde_list, y_cm_list)
+                print(f"💾 Saved {len(X_list)} CM samples to CM dataset | total CM now: {X_list.shape[0]}")
+                X_list.clear(); y_delta_list.clear(); y_tilde_list.clear(); y_cm_list.clear()
+                if generated % (batch_size * 10) == 0:
+                    print(f"✅ Generated CM samples: {generated}/{target_cm}")
+        except Exception:
+            continue
+
+    # Save remainder
+    if len(X_list) > 0:
+        save_to_cm_dataset(X_list, y_delta_list, y_tilde_list, y_cm_list)
+    
+    print(f"🎉 Done. Generated CM samples: {generated}. Time: {time.time()-start_time:.1f}s")
+    return generated
+
+def generate_for_ranges(ranges: List[Tuple[int, int, int]], batch_size: int = 1000) -> int:
+    """Sinh dữ liệu cho các khoảng p chỉ định.
+    ranges: danh sách (min_p, max_p, samples_target).
+    Ghi trực tiếp vào dataset hiện có theo lô.
+    """
+    print("=" * 60)
+    print("🚀 GENERATE FOR SPECIFIC RANGES")
+    print("=" * 60)
+
+    total_generated = 0
+    X_list: List[List[float]] = []
+    y_delta_list: List[float] = []
+    y_tilde_list: List[float] = []
+    y_cm_list: List[float] = []
+
+    from feature_explanation import extract_features_rich
+
+    for (min_p, max_p, samples_target) in ranges:
+        primes = list(primerange(min_p, max_p + 1))
+        if not primes:
+            print(f"⚠️ No primes in range {min_p}-{max_p}")
+            continue
+        print(f"\n📊 Range {min_p}-{max_p}: Target {samples_target} samples")
+        range_cnt = 0
+        attempts = 0
+        max_attempts = samples_target * 2
+        while range_cnt < samples_target and attempts < max_attempts:
+            p = random.choice(primes)
+            # sampling A, B
+            if p < 1000:
+                A = random.randint(1, p - 1)
+                B = random.randint(1, p - 1)
+            else:
+                if random.random() < 0.7:
+                    A = random.randint(1, min(10000, p // 10))
+                    B = random.randint(1, min(10000, p // 10))
+                else:
+                    A = random.randint(1, p - 1)
+                    B = random.randint(1, p - 1)
+            attempts += 1
+            if not is_valid_curve(A, B, p):
+                continue
+            try:
+                delta = calculate_delta(A, B, p)
+                tilde_delta = calculate_tilde_delta(A, B, p)
+                j_inv = j_invariant_mod_p(A, B, p)
+                known_cm_j = [0, 1728]
+                if p > 3:
+                    known_cm_j.extend([8000, 54000])
+                has_cm = j_inv in known_cm_j or abs(tilde_delta) > 1.8
+                base = extract_features(A, B, p)
+                rich = extract_features_rich(p, A, B, sample_x=16)
+                feats = list(base) + list(rich)
+                X_list.append(feats)
+                y_delta_list.append(delta)
+                y_tilde_list.append(tilde_delta)
+                y_cm_list.append(1.0 if has_cm else 0.0)
+                range_cnt += 1
+                total_generated += 1
+                if len(X_list) >= batch_size:
+                    save_to_existing_dataset(X_list, y_delta_list, y_tilde_list, y_cm_list)
+                    X_list.clear(); y_delta_list.clear(); y_tilde_list.clear(); y_cm_list.clear()
+            except Exception:
+                continue
+        print(f"✅ Range {min_p}-{max_p}: Generated {range_cnt} samples")
+
+    if len(X_list) > 0:
+        save_to_existing_dataset(X_list, y_delta_list, y_tilde_list, y_cm_list)
+
+    print(f"🎉 Done. Generated total: {total_generated}")
+    return total_generated
+
 if __name__ == "__main__":
     import sys
-    
-    if len(sys.argv) > 1 and sys.argv[1] == "--merge":
-        # Chỉ merge batch files
-        merge_batches_only()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "--merge":
+            merge_batches_only()
+        elif sys.argv[1] == "--cm":
+            target = int(sys.argv[2]) if len(sys.argv) > 2 else 50000
+            maxp = int(sys.argv[3]) if len(sys.argv) > 3 else 200000
+            batch = int(sys.argv[4]) if len(sys.argv) > 4 else 500
+            generate_cm_samples(target_cm=target, max_p=maxp, batch_size=batch)
+        else:
+            main()
     else:
-        # Chạy generation bình thường
         main()

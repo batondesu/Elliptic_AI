@@ -288,5 +288,122 @@ def extract_features(p: int, A: int, B: int) -> List[float]:
     
     return features[:40]  # Đảm bảo đúng 40 features
 
+def extract_features_rich(p: int, A: int, B: int, sample_x: int = 64) -> List[float]:
+    """Sinh bộ features toán học giàu thông tin hơn (KHÔNG dùng trực tiếp cho model hiện tại).
+
+    Mục đích: phục vụ phân tích/so sánh/chuẩn bị mở rộng dataset về sau.
+    Vẫn đảm bảo chi phí tính toán thấp (O(sample_x)).
+    """
+    features: List[float] = []
+    # 1) Tham số cơ bản
+    features.extend([
+        float(p), float(A), float(B)
+    ])
+    # 2) Invariants cổ điển (Weierstrass short form y^2 = x^3 + Ax + B)
+    #    c4 = -48A, c6 = -864B, Δ = -16(4A^3 + 27B^2), j ≈ c4^3 / Δ (tránh Δ=0)
+    c4 = -48.0 * A
+    c6 = -864.0 * B
+    disc = -16.0 * (4.0 * (A ** 3) + 27.0 * (B ** 2))
+    j_val = 0.0
+    try:
+        if disc != 0:
+            j_val = float((c4 ** 3) / disc)
+    except Exception:
+        j_val = 0.0
+    features.extend([
+        float(c4), float(c6), float(disc), float(j_val),
+        abs(float(c4)), abs(float(c6)), abs(float(disc))
+    ])
+    # log-invariants tránh log(0)
+    features.extend([
+        math.log10(max(1.0, abs(float(c4)))),
+        math.log10(max(1.0, abs(float(c6)))),
+        math.log10(max(1.0, abs(float(disc)))),
+        math.log10(max(1.0, abs(float(j_val))))
+    ])
+    # 3) Hasse interval
+    T = int(math.ceil(2.0 * math.sqrt(p)))
+    hasse_lower = p + 1 - T
+    hasse_upper = p + 1 + T
+    hasse_width = hasse_upper - hasse_lower + 1
+    features.extend([
+        float(T), float(hasse_lower), float(hasse_upper), float(hasse_width)
+    ])
+    # 4) Phân lớp modulo của p (giúp bắt tính chất số học của trường)
+    features.extend([
+        float(p % 3), float(p % 4), float(p % 5), float(p % 7),
+        float(p % 8), float(p % 12), float(p % 24)
+    ])
+    # 5) Ký hiệu Legendre cho A, B, Δ (0 nếu chia hết mod p)
+    def safe_legendre(x: int, p: int) -> int:
+        try:
+            return int(legendre_symbol(x % p, p)) if (x % p) != 0 else 0
+        except Exception:
+            return 0
+    features.extend([
+        float(safe_legendre(A, p)),
+        float(safe_legendre(B, p)),
+        float(safe_legendre(int(disc) % p, p))
+    ])
+    # Một số tổ hợp Legendre bổ sung
+    features.extend([
+        float(safe_legendre((A + B) % p, p)),
+        float(safe_legendre((A - B) % p, p)),
+        float(safe_legendre((A * B) % p, p)),
+        float(safe_legendre(int(c4) % p, p)),
+        float(safe_legendre(int(c6) % p, p)),
+        float(safe_legendre(int(-disc) % p, p)),
+        float(safe_legendre(2, p)),
+        float(safe_legendre(p - 1, p))  # legendre(-1, p)
+    ])
+    # 6) Mật độ nghiệm bậc hai của r(x) = x^3 + A x + B (mod p) trên một mẫu nhỏ
+    #    (tương quan với số điểm y^2 = r(x) tồn tại) → proxy nhẹ cho độ khó/hình dạng đường cong
+    sample = min(sample_x, p)
+    qres_count = 0
+    zeros_count = 0
+    leg_sum = 0  # Σ χ(r(x)) trên mẫu (proxy liên quan tới trace)
+    for x in range(sample):
+        r = (x * x % p * x % p + (A % p) * x + (B % p)) % p
+        if r == 0:
+            zeros_count += 1
+            qres_count += 1  # giữ nguyên định nghĩa cũ cho mật độ
+        else:
+            try:
+                chi = int(legendre_symbol(int(r), p))
+                if chi == 1:
+                    qres_count += 1
+                leg_sum += chi  # chi ∈ {-1,0,1} nhưng r!=0 nên chi∈{-1,1}
+            except Exception:
+                continue
+    qres_density = qres_count / float(sample) if sample > 0 else 0.0
+    features.extend([
+        float(qres_density), float(qres_count), float(zeros_count)
+    ])
+    # 6b) Proxy Frobenius trace mod ℓ nhỏ: dùng leg_sum (mẫu) % ℓ và chuẩn hóa
+    for ell in [3, 5, 7, 11]:
+        try:
+            val_mod = ((leg_sum % ell) + ell) % ell
+        except Exception:
+            val_mod = 0
+        features.extend([
+            float(val_mod),
+            float(val_mod) / float(ell)
+        ])
+    # 7) Chuẩn hóa theo sqrt(p) cho một vài đại lượng (scale-invariant-ish)
+    sqrtp = math.sqrt(p)
+    features.extend([
+        float(A / max(1.0, sqrtp)), float(B / max(1.0, sqrtp)),
+        float(T / max(1.0, sqrtp))
+    ])
+    # 8) j-invariant modulo các cơ số nhỏ (chuẩn hoá về [0,1])
+    try:
+        j_mods = []
+        for m in [3, 5, 7, 11]:
+            j_mods.append(float((int(j_val) % m) / m))
+        features.extend(j_mods)
+    except Exception:
+        features.extend([0.0, 0.0, 0.0, 0.0])
+    return features
+
 if __name__ == '__main__':
     explain_features() 
