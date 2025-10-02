@@ -1,33 +1,42 @@
-# Elliptic_AI - AI-Enhanced Schoof Algorithm
+# Neural Network cho Elliptic Curve Analysis
 
 ## Mô tả
-
-Elliptic_AI là một hệ thống AI tiên tiến để phân tích đường cong elliptic, triển khai AI-enhanced Schoof's Algorithm với deep neural networks để dự đoán δ (delta) và thu hẹp khoảng Hasse, giảm thời gian đếm điểm trên đường cong elliptic y² = x³ + Ax + B (mod p).
+Chương trình sử dụng Deep Neural Network để phân tích và dự đoán các thuộc tính của đường cong elliptic.
 
 ## Cài đặt
 
-### Cài đặt dependencies
+### 1. Cài đặt dependencies
 ```bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-## Sử dụng nhanh
+### 2. Chuẩn bị dữ liệu
+- File `input.txt` chứa dữ liệu đầu vào với format: `p a b order`
+- Trong đó:
+  - `p`: prime field size
+  - `a, b`: coefficients của elliptic curve y² = x³ + ax + b
+  - `order`: thứ tự của điểm trên curve
 
-### 1. Sinh dataset chuẩn (nếu cần)
+## Sử dụng
+
+### Chạy chương trình
 ```bash
-python3 generate_more_data.py
+python nn88.py
 ```
 
-### 2. Huấn luyện AI-enhanced Schoof v2.0
-```bash
-python3 ai_enhanced_schoof_v2.py
-```
+### Input
+- Nhập tỷ lệ train/test (ví dụ: 0.8 cho 80% train, 20% test)
 
-### 3. Demo tương tác
-```bash
-python3 demo_schoof_v2.py
-```
+### Output
+- Kết quả được lưu trong file `output_nn.txt`
+- Bao gồm: |diff|, p, a, b, ord (thứ tự thực), est (ước lượng)
 
-### Lệnh demo:
-- `demo` - Chạy demo tự động
-- `quit` - Thoát
+## Kiến trúc Neural Network
+- 7 hidden layers với kiến trúc giảm dần: 512→256→128→64→32→16→8→1
+- Activation: ReLU cho hidden layers, Sigmoid cho output
+- BatchNormalization và Dropout để tránh overfitting
+- Optimizer: Adam với learning rate 0.005
+- Loss function: MSLE (Mean Squared Logarithmic Error)
+
+## Dữ liệu mẫu
+File `input.txt` đã chứa dữ liệu mẫu với các prime field p=17 và p=23.
