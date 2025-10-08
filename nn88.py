@@ -5,7 +5,7 @@ import tensorflow.keras.layers as tfl
 from math import log2, floor
 
 def read_raw_data() :
-	with open('input.txt') as file:
+	with open('input1.txt') as file:
 		lines = file.readlines()
 		return lines
 
@@ -70,11 +70,11 @@ original_labels_train = original_labels[:split]
 original_labels_test = original_labels[split:]
 
 model = Model()
+model.load_weights(str(ratio).replace('.', '1') + 'weights.hdf5'); print('')
 model.compile(optimizer = tf.keras.optimizers.Adam(learning_rate=0.005), loss = 'mse')
 model.fit(X_train, Y_train, epochs = 50, batch_size = min(32, len(X_train)), shuffle = False)
 
 model.save_weights(str(ratio).replace('.', '1') + 'weights.hdf5') ; print('')
-model.load_weights('018weights.hdf5') ; print('')
 model.evaluate(X_test, Y_test)
 
 n_test_examples = np.shape(X_test)[0]
