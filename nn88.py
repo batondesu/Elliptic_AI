@@ -5,7 +5,7 @@ import tensorflow.keras.layers as tfl
 from math import log2, floor
 
 def read_raw_data() :
-	with open('input1.txt') as file:
+	with open('input10.txt') as file:
 		lines = file.readlines()
 		return lines
 
