@@ -5,7 +5,7 @@ import tensorflow.keras.layers as tfl
 from math import log2, floor
 
 def read_raw_data() :
-	with open('input1.txt') as file:
+	with open('input32.txt') as file:
 		lines = file.readlines()
 		return lines
 
@@ -34,7 +34,7 @@ def Model() :
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 128, activation = 'relu'),
-		tfl.Dropout(0.1),
+		tfl.Dropout(0.15),
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 64, activation = 'relu'),
@@ -46,11 +46,11 @@ def Model() :
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 16, activation = 'relu'),
-		tfl.Dropout(0.2),
+		tfl.Dropout(0.25),
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 8, activation = 'relu'),
-		tfl.Dropout(0.25),
+		tfl.Dropout(0.3),
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 1, activation = 'sigmoid') ])

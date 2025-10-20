@@ -2,7 +2,7 @@ import csv
 import random
 from sage.all import *
 
-def generate_ec_dataset(bits=32, num_samples=1000, filename="ec_dataset_24bit.txt"):
+def generate_ec_dataset(bits=64, num_samples=1000, filename="input64.txt"):
     data = []
     p_min = 2**(bits-1)
     p_max = 2**bits - 1
@@ -10,7 +10,7 @@ def generate_ec_dataset(bits=32, num_samples=1000, filename="ec_dataset_24bit.tx
     # Vòng lặp chính
     for i in range(num_samples):
         # Reset bộ nhớ PARI định kỳ (tránh tràn stack)
-        if i % 700 == 0:
+        if i % 200 == 0:
             pari.allocatemem(10**7)
 
         # Sinh số nguyên tố p
@@ -41,5 +41,5 @@ def generate_ec_dataset(bits=32, num_samples=1000, filename="ec_dataset_24bit.tx
 
     print(f"✅ Đã sinh {len(data)} elliptic curves {bits}-bit và lưu vào {filename}")
 
-# Ví dụ chạy:
-generate_ec_dataset(bits=24, num_samples=7000, filename="ec_dataset_24bit.txt")
+# Sinh 70,000 dữ liệu vào input32.txt
+generate_ec_dataset(bits=64, num_samples=60000, filename="input64.txt")
