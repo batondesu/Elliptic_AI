@@ -1,0 +1,7 @@
+Metric,Baseline,AI,Improvement
+Curves,100,100,-
+P_bits,64,64,-
+Total_time_s,0.822,3.970,4.83x slower
+Total_primes,1100,1100,0 (0.0%)
+Avg_primes_per_curve,11.0,11.0,-
+Early_stopping_rate,-,0.0%,-

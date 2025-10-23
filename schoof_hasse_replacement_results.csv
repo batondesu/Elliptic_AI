@@ -1,0 +1,5 @@
+Metric,Original,AI,Improvement
+Total_curves,100,100,-
+P_bits,64,64,-
+Total_primes,1100,1100,0 (0.0%)
+Avg_hasse_interval,"14,981,657,744","12,734,409,083",1.18x
