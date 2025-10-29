@@ -10,8 +10,8 @@ def generate_ec_dataset(bits=64, num_samples=1000, filename="input64.txt"):
     # Vòng lặp chính
     for i in range(num_samples):
         # Reset bộ nhớ PARI định kỳ (tránh tràn stack)
-        if i % 200 == 0:
-            pari.allocatemem(10**9)
+        if i % 100 == 0:
+            pari.allocatemem(4 * 10**9)
 
         # Sinh số nguyên tố p
         p = random_prime(p_max, lbound=p_min)
@@ -39,7 +39,7 @@ def generate_ec_dataset(bits=64, num_samples=1000, filename="input64.txt"):
         for p, a, b, n in data:
             f.write(f"{p} {a} {b} {n}\n")
 
-    print(f"✅ Đã sinh {len(data)} elliptic curves {bits}-bit và lưu vào {filename}")
+    print(f"✅ Đã sinh {len(data)} elliptica curves {bits}-bit và lưu vào {filename}")
 
 # Sinh 70,000 dữ liệu vào input32.txt
-generate_ec_dataset(bits=128, num_samples=10000, filename="input1281.txt")
+generate_ec_dataset(bits=256, num_samples=25000, filename="input1281.txt")

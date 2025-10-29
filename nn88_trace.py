@@ -15,7 +15,7 @@ Lý do:
 """
 
 def read_raw_data():
-	with open('input64.txt') as file:
+	with open('input256.txt') as file:
 		lines = file.readlines()
 		return lines
 
@@ -27,26 +27,36 @@ def proccess_raw_data(raw_data):
 	→ Normalize trace theo khoảng Hasse
 	"""
 	data = []
+	traces = []
+	original_orders = []
+	
 	for line in raw_data:
-		data.append(list(map(int, line.split())))
-	data = np.array(data, dtype=np.longdouble)
+		parts = list(map(int, line.split()))
+		if len(parts) >= 4:
+			p, a, b, order = parts[:4]
+			
+			# Tính trace
+			trace = p + 1 - order
+			
+			# Normalize ngay (tránh overflow)
+			sqrt_p = np.sqrt(float(p))
+			
+			# Normalize features
+			p_norm = float(p)
+			a_norm = float(a)
+			b_norm = float(b)
+			
+			# Normalize trace: trace/(4√p) + 0.5 ∈ [0, 1]
+			trace_norm = trace / (4 * sqrt_p) + 0.5
+			
+			data.append([p_norm, a_norm, b_norm, trace_norm])
+			traces.append(trace)
+			original_orders.append(order)
 	
-	# Lưu order gốc
-	original_orders = np.copy(data[:, 3])
-	
-	# Chuyển order → trace
-	# trace = p + 1 - order
-	traces = data[:, 0] + 1 - data[:, 3]
-	
-	# Normalize trace về [0, 1]
-	# Trace ∈ [-2√p, 2√p] theo định lý Hasse
-	# Normalize: (trace + 2√p) / (4√p) = trace/(4√p) + 0.5
-	sqrt_p = np.sqrt(data[:, 0])
-	traces_normalized = traces / (4 * sqrt_p) + 0.5
-	
-	# Thay cột thứ 4 bằng trace đã normalize
-	data[:, 3] = traces_normalized
-	
+	data = np.array(data, dtype=np.float64)
+	traces = np.array(traces, dtype=np.float64)
+	original_orders = np.array(original_orders, dtype=np.float64)
+
 	return data, original_orders, traces
 
 def generate_X_Y_sets(data):
@@ -123,7 +133,7 @@ print(f'\n Train: {len(X_train)}, Test: {len(X_test)}')
 model = Model()
 
 # Try load weights
-weights_file = str(ratio).replace('.', '1') + 'weights_trace.hdf5'
+weights_file = str(ratio).replace('.', '1') + 'weights.hdf5'
 try:
 	model.load_weights(weights_file)
 	print(f' ✓ Loaded weights: {weights_file}\n')
