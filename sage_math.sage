@@ -1,17 +1,19 @@
 import csv
 import random
 from sage.all import *
+import time
 
 def generate_ec_dataset(bits=64, num_samples=1000, filename="input64.txt"):
     data = []
     p_min = 2**(bits-1)
     p_max = 2**bits - 1
+    start = time.time()
 
     # Vòng lặp chính
     for i in range(num_samples):
         # Reset bộ nhớ PARI định kỳ (tránh tràn stack)
         if i % 100 == 0:
-            pari.allocatemem(4 * 10**9)
+            pari.allocatemem(2 * 10**9)
 
         # Sinh số nguyên tố p
         p = random_prime(p_max, lbound=p_min)
@@ -34,12 +36,13 @@ def generate_ec_dataset(bits=64, num_samples=1000, filename="input64.txt"):
             continue
 
         data.append((p, a, b, n))
-        
+      
+    total = time.time() - start
     with open(filename, "w") as f:
         for p, a, b, n in data:
             f.write(f"{p} {a} {b} {n}\n")
 
+    print(f"   Tổng thời gian: {total:.3f}s")
     print(f"✅ Đã sinh {len(data)} elliptica curves {bits}-bit và lưu vào {filename}")
 
-# Sinh 70,000 dữ liệu vào input32.txt
-generate_ec_dataset(bits=256, num_samples=25000, filename="input1281.txt")
+generate_ec_dataset(bits=128, num_samples=1000, filename="input1164.txt")

@@ -9,7 +9,7 @@ from tensorflow import keras
 from pathlib import Path
 
 class TracePredictor:
-    def __init__(self, weights_path='018weights_trace.hdf5'):
+    def __init__(self, weights_path='018weights.hdf5'):
         """Load model dự đoán trace"""
         self.model = self._build_model()
         if not Path(weights_path).exists():

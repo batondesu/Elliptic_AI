@@ -133,7 +133,7 @@ print(f'\n Train: {len(X_train)}, Test: {len(X_test)}')
 model = Model()
 
 # Try load weights
-weights_file = str(ratio).replace('.', '1') + 'weights.hdf5'
+weights_file = str(ratio).replace('.', '1') + 'weights_trace.hdf5'
 try:
 	model.load_weights(weights_file)
 	print(f' ✓ Loaded weights: {weights_file}\n')
