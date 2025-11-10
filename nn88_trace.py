@@ -15,7 +15,7 @@ Lý do:
 """
 
 def read_raw_data():
-	with open('input256.txt') as file:
+	with open('input128.txt') as file:
 		lines = file.readlines()
 		return lines
 

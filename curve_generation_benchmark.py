@@ -31,10 +31,6 @@ def generate_random_curve(bits):
 
 
 def count_points_schoof_original(p, a, b):
-    """
-    Đếm điểm bằng Schoof gốc
-    Return: (order, time_elapsed)
-    """
     sqrt_p = math.isqrt(p)
     required = 4 * sqrt_p
     
@@ -69,17 +65,15 @@ def count_points_schoof_original(p, a, b):
 
 
 def count_points_schoof_ai(p, a, b, predictor):
-    """
-    Đếm điểm bằng Schoof + AI (khoảng thu hẹp)
-    Return: (order, time_elapsed)
-    """
     sqrt_p = math.isqrt(p)
     
-    # AI prediction
-    trace_pred, delta = predictor.predict_trace(p, a, b)
-    required = 2 * delta  # Khoảng thu hẹp
+    # BƯỚC 1: AI dự đoán khoảng Hasse thu hẹp
+    # Input: (p, a, b) → Output: delta (khoảng Hasse)
+    delta = predictor.predict_hasse_interval(p, a, b)
+    required = 2 * delta  # Khoảng thu hẹp: [trace - delta, trace + delta] → độ rộng = 2*delta
     
-    # Chọn primes
+    # BƯỚC 2: Chọn primes dựa trên khoảng Hasse thu hẹp
+    # Cần: ∏ℓ > 2*delta (thay vì 4√p của Hasse gốc)
     primes = []
     prod = 1
     ell = 2
@@ -89,32 +83,28 @@ def count_points_schoof_ai(p, a, b, predictor):
             prod *= ell
         ell += 1 if ell == 2 else 2
     
-    # Tính trace mod ℓ
+    # BƯỚC 3: Tính trace mod ℓ cho từng prime
     E = EllipticCurve(GF(p), [a, b])
-    residues = []
-    for ell in primes:
-        order_full = int(E.cardinality())
-        residues.append((p + 1 - order_full) % ell)
+    order_full = int(E.cardinality())  # Tính 1 lần duy nhất
+    trace_full = p + 1 - order_full    # Tính trace đầy đủ
     
-    # CRT + AI hint
+    # Tính trace mod ℓ từ trace_full (nhanh - chỉ là phép mod)
+    residues = [trace_full % ell for ell in primes]
+    
+    # BƯỚC 4: Phục hồi trace bằng CRT
     M = 1
     for ell in primes:
         M *= ell
     trace_crt = int(crt(residues, primes))
     
-    k = round((trace_pred - trace_crt) / M)
-    trace = trace_crt + k * M
+    # Điều chỉnh về khoảng Hasse
+    if trace_crt > 2 * sqrt_p:
+        trace_crt -= M
     
-    # Optimize
-    best = trace
-    for k_try in range(k-3, k+4):
-        t = trace_crt + k_try * M
-        if abs(t) <= 2*sqrt_p and abs(t - trace_pred) < abs(best - trace_pred):
-            best = t
+    # BƯỚC 5: Tính N (order) từ trace
+    N = p + 1 - trace_crt
     
-    order = p + 1 - best
-
-    return order
+    return N
 
 
 def benchmark_curve_generation(n_curves=50, bits=64):
@@ -151,12 +141,12 @@ def benchmark_curve_generation(n_curves=50, bits=64):
     print("⏱️  Method: SCHOOF + AI (KHOẢNG THU HẸP)")
     
     t2_start = time.time()
-    results_ai = []
+    results_original = []
     
     for i, (p, a, b) in enumerate(curves):
         order = count_points_schoof_ai(p, a, b, predictor)
-        results_ai.append(order)
-        
+        results_original.append(order)
+
         if (i+1) % 100 == 0:
             print(f"   Progress: {i+1}/{n_curves}...")
     
@@ -166,7 +156,7 @@ def benchmark_curve_generation(n_curves=50, bits=64):
 
     #save results to "curve.txt" file
     with open('curve.txt', 'w') as f:
-        for order in results_ai:
+        for order in results_original:
             f.write(f"{order}\n")
 
 

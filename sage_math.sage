@@ -45,4 +45,4 @@ def generate_ec_dataset(bits=64, num_samples=1000, filename="input64.txt"):
     print(f"   Tổng thời gian: {total:.3f}s")
     print(f"✅ Đã sinh {len(data)} elliptica curves {bits}-bit và lưu vào {filename}")
 
-generate_ec_dataset(bits=128, num_samples=1000, filename="input1164.txt")
+generate_ec_dataset(bits=128, num_samples=100, filename="input1164.txt")
