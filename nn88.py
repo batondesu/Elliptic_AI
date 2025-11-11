@@ -5,17 +5,17 @@ import tensorflow.keras.layers as tfl
 from math import log2, floor
 
 def read_raw_data() :
-	with open('input64.txt') as file:
+	with open('input128.txt') as file :
 		lines = file.readlines()
-		return lines
+	return lines
 
-def proccess_raw_data(raw_data):
+def proccess_raw_data(raw_data) :
 	data = []
-	for line in raw_data:
+	for line in raw_data :
 		data.append(list(map(int, line.split())))
 	data = np.array(data, dtype = np.longdouble)
 	original_labels = np.copy(data[:, 3])
-	data[:, 3] = (data[:, 3] - data[:, 0] - 1) / (4 * np.sqrt(data[:, 0])) + 0.5
+	data[:, 3] = (data[:, 0] - data[:, 3] + 1) / (4 * np.sqrt(data[:, 0])) + 0.5
 	return data, original_labels
 
 def generate_X_Y_sets(data) :
@@ -34,7 +34,7 @@ def Model() :
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 128, activation = 'relu'),
-		tfl.Dropout(0.15),
+		tfl.Dropout(0.1),
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 64, activation = 'relu'),
@@ -46,11 +46,11 @@ def Model() :
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 16, activation = 'relu'),
-		tfl.Dropout(0.25),
+		tfl.Dropout(0.2),
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 8, activation = 'relu'),
-		tfl.Dropout(0.3),
+		tfl.Dropout(0.25),
 		tfl.BatchNormalization(),
 
 		tfl.Dense(units = 1, activation = 'sigmoid') ])
@@ -70,11 +70,12 @@ original_labels_train = original_labels[:split]
 original_labels_test = original_labels[split:]
 
 model = Model()
-model.load_weights(str(ratio).replace('.', '1') + 'weights.hdf5'); print('')
-model.compile(optimizer = tf.keras.optimizers.Adam(learning_rate=0.005), loss = 'mse')
-model.fit(X_train, Y_train, epochs = 50, batch_size = min(32, len(X_train)), shuffle = False)
+model.load_weights('018heights.hdf5')
+print(f"Is any nan in weights: {np.any(np.isnan(model.get_weights()[0]))}")
+model.compile(optimizer = tf.keras.optimizers.Adam(learning_rate=0.005), loss = 'msle')
+model.fit(X_train, Y_train, epochs = 50, batch_size = 64, shuffle = False)
 
-model.save_weights(str(ratio).replace('.', '1') + 'weights.hdf5') ; print('')
+model.save_weights(str(ratio).replace('.', '1') + 'heights.hdf5')
 model.evaluate(X_test, Y_test)
 
 n_test_examples = np.shape(X_test)[0]

@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.keras.layers as tfl
 from math import log2, floor
-from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 
 """
 Model mới: Dự đoán TRACE Frobenius thay vì ORDER
@@ -14,50 +14,71 @@ Lý do:
 - Order = p + 1 - trace, nên dự đoán trace trực tiếp tốt hơn
 """
 
+BIT_SIZE = 64  # Chuẩn hóa p theo log2 scale với 256 bits
+
 def read_raw_data():
-	with open('input128.txt') as file:
+	intputFile = f'input{BIT_SIZE}.txt'
+	with open(intputFile) as file:
 		lines = file.readlines()
 		return lines
 
-def proccess_raw_data(raw_data):
-	"""
-	Xử lý dữ liệu:
-	Input: p a b order
-	→ Chuyển thành: p a b trace
-	→ Normalize trace theo khoảng Hasse
-	"""
-	data = []
-	traces = []
-	original_orders = []
-	
-	for line in raw_data:
-		parts = list(map(int, line.split()))
-		if len(parts) >= 4:
-			p, a, b, order = parts[:4]
-			
-			# Tính trace
-			trace = p + 1 - order
-			
-			# Normalize ngay (tránh overflow)
-			sqrt_p = np.sqrt(float(p))
-			
-			# Normalize features
-			p_norm = float(p)
-			a_norm = float(a)
-			b_norm = float(b)
-			
-			# Normalize trace: trace/(4√p) + 0.5 ∈ [0, 1]
-			trace_norm = trace / (4 * sqrt_p) + 0.5
-			
-			data.append([p_norm, a_norm, b_norm, trace_norm])
-			traces.append(trace)
-			original_orders.append(order)
-	
-	data = np.array(data, dtype=np.float64)
-	traces = np.array(traces, dtype=np.float64)
-	original_orders = np.array(original_orders, dtype=np.float64)
 
-	return data, original_orders, traces
+def proccess_raw_data(raw_data):
+    """
+    Xử lý dữ liệu:
+    Input: p a b order
+    → Chuyển thành: p a b trace
+    → Normalize features và trace để tránh overflow
+    """
+    data = []
+    traces = []
+    original_orders = []
+
+    p_list, a_list, b_list = [], [], []
+
+    # Lấy max để scale a, b
+    for line in raw_data:
+        parts = list(map(int, line.split()))
+        if len(parts) >= 4:
+            p, a, b, order = parts[:4]
+            p_list.append(p)
+            a_list.append(a)
+            b_list.append(b)
+
+    max_a = max(a_list)
+    max_b = max(b_list)
+
+    for idx, line in enumerate(raw_data):
+        parts = list(map(int, line.split()))
+        if len(parts) >= 4:
+            p, a, b, order = parts[:4]
+
+            # Trace
+            trace = p + 1 - order
+            sqrt_p = np.sqrt(float(p))
+
+            # Normalize features
+            # - p theo log scale (0~1)
+            p_norm = np.log2(float(p)) / BIT_SIZE
+
+            # - a, b min-max scale
+            a_norm = float(a) / max_a if max_a != 0 else 0.0
+            b_norm = float(b) / max_b if max_b != 0 else 0.0
+
+            # Normalize trace: map vào [0, 1] cho sigmoid output
+            # trace có thể từ -2√p đến 2√p, nên trace/(4√p) từ -0.5 đến 0.5
+            # Map vào [0, 1]: trace_norm = trace/(4√p) + 0.5
+            trace_norm = (trace / (4 * sqrt_p)) + 0.5  
+
+            data.append([p_norm, a_norm, b_norm, trace_norm])
+            traces.append(trace)
+            original_orders.append(order)
+
+    data = np.array(data, dtype=np.float64)
+    traces = np.array(traces, dtype=np.float64)
+    original_orders = np.array(original_orders, dtype=np.float64)
+
+    return data, original_orders, traces
 
 def generate_X_Y_sets(data):
 	"""
@@ -108,12 +129,12 @@ print("\n" + "="*70)
 print("TRAINING MODEL DỰ ĐOÁN TRACE FROBENIUS")
 print("="*70)
 
+#normalize data BIT_SIZE bits
 data = read_raw_data()
 data, original_orders, original_traces = proccess_raw_data(data)
 X, Y, n = generate_X_Y_sets(data)
 
 print(f'\n Số examples: {n}')
-print(f' Dữ liệu: input32.txt')
 P_bits = 1 + floor(log2(X[0, 0]))
 print(f' p bits: {P_bits}')
 print(f' √p ≈ {int(X[0, 0]**0.5):,}')
@@ -127,16 +148,19 @@ X_test, Y_test = X[split:, :], Y[split:]
 original_orders_test = original_orders[split:]
 original_traces_test = original_traces[split:]
 
+p_test_original = np.power(2.0, X_test[:, 0] * BIT_SIZE)
+
 print(f'\n Train: {len(X_train)}, Test: {len(X_test)}')
 
 # Build model
 model = Model()
 
 # Try load weights
-weights_file = str(ratio).replace('.', '1') + 'weights_trace.hdf5'
-try:
+weights_file = str(ratio).replace('.', '1') + 'new_weights.hdf5'
+try: 
 	model.load_weights(weights_file)
 	print(f' ✓ Loaded weights: {weights_file}\n')
+	print(f"Is any nan in weights: {np.any(np.isnan(model.get_weights()[0]))}")
 except:
 	print(f' • Khởi tạo weights mới: {weights_file}\n')
 
@@ -170,7 +194,8 @@ callbacks = [
 		patience=3,
 		min_lr=0.0001,
 		verbose=1
-	)
+	),
+	ModelCheckpoint(weights_file, save_best_only=True)
 ]
 
 history = model.fit(
@@ -194,7 +219,7 @@ print("="*70)
 eval_results = model.evaluate(X_test, Y_test, verbose=0)
 if isinstance(eval_results, list):
 	loss, mae = eval_results
-	print(f'\nTest loss (MSE): {loss:.6f}, MAE: {mae:.6f}')
+	print(f'\nTest loss (MSE) hai chjam: {loss:.6f}, MAE: {mae:.6f}')
 else:
 	loss = eval_results
 	print(f'\nTest loss (MSE): {loss:.6f}')
@@ -202,10 +227,10 @@ else:
 # Predictions
 n_test = np.shape(X_test)[0]
 predictions_normalized = np.reshape(model.predict(X_test, verbose=0), n_test)
-
+print(f"Predictions normalized: {predictions_normalized}")
 # Denormalize về trace thực
 # trace = (y_norm - 0.5) * 4√p
-sqrt_p_test = np.sqrt(X_test[:, 0])
+sqrt_p_test = np.sqrt(p_test_original)
 traces_pred = (predictions_normalized - 0.5) * 4 * sqrt_p_test
 
 # So sánh với trace thực
