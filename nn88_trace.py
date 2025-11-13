@@ -14,7 +14,7 @@ Lý do:
 - Order = p + 1 - trace, nên dự đoán trace trực tiếp tốt hơn
 """
 
-BIT_SIZE = 64  # Chuẩn hóa p theo log2 scale với 256 bits
+BIT_SIZE = 32  # Chuẩn hóa p theo log2 scale với 256 bits
 
 def read_raw_data():
 	intputFile = f'input{BIT_SIZE}.txt'

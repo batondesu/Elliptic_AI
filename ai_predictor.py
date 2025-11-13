@@ -98,264 +98,108 @@ class TracePredictor:
         ])
         return model
     
-    def predict_hasse_interval(self, p, a, b, n_samples=1):
-        X = np.array([[float(p), float(a), float(b)]], dtype=np.float32)
-        sqrt_p = np.sqrt(float(p))
-        
-        # MONTE CARLO DROPOUT: Predict nhiều lần với dropout enabled
-        # Điều này cho phép estimate uncertainty từ model chính nó
-        predictions_norm = []
-        
-        # Predict với training=True để enable dropout layers
-        # Thử cả 2 cách: model() và model.predict() với dropout
-        try:
-            for _ in range(n_samples):
-                # Cách 1: Dùng model call trực tiếp
-                y_norm = self.model(X, training=True).numpy()[0][0]
-                if not (np.isnan(y_norm) or np.isinf(y_norm)):
-                    predictions_norm.append(y_norm)
-        except:
-            # Fallback: predict bình thường (không có dropout)
-            y_norm = self.model.predict(X, verbose=0)[0][0]
-            predictions_norm = [y_norm] * n_samples  # Lặp lại giá trị
-        
-        print(f"Predictions norm: {predictions_norm}")
-
-        # Kiểm tra có đủ predictions không
-        if len(predictions_norm) == 0:
-            # Fallback: predict 1 lần
-            y_norm = self.model.predict(X, verbose=0)[0][0]
-            predictions_norm = np.array([y_norm])
-        
-        predictions_norm = np.array(predictions_norm)
-        
-        # Kiểm tra NaN hoặc inf trong predictions
-        if len(predictions_norm) == 0 or np.any(np.isnan(predictions_norm)) or np.any(np.isinf(predictions_norm)):
-            # Fallback: dùng delta tối thiểu
-            delta_min = max(int(sqrt_p * 0.1), 100)
-            delta_max = int(2 * sqrt_p)
-            return max(delta_min, min(int(0.85 * sqrt_p * 2), delta_max))
-        
-        # Tính std dev từ model predictions (uncertainty)
-        std_norm = np.std(predictions_norm)
-        
-        # Xử lý trường hợp std = 0 hoặc NaN (model quá confident hoặc lỗi)
-        if std_norm == 0 or np.isnan(std_norm) or np.isinf(std_norm):
-            # Fallback: dùng delta dựa trên √p (tương tự avg_diff)
-            std_norm = 0.85 / (2.5 * 4)  # Tương đương với delta ≈ 0.85 * √p
-            std_trace = std_norm * 4 * sqrt_p
-        else:
-            # Chuyển sang không gian trace: std_trace = std_norm * 4√p
-            std_trace = std_norm * 4 * sqrt_p
-        
-        # Delta = confidence_factor * std_trace
-        # Dùng 2.5 sigma để bao phủ ~99% predictions
-        confidence_factor = 2.5
-        delta = confidence_factor * std_trace
-        
-        # Kiểm tra NaN trước khi convert
-        if np.isnan(delta) or np.isinf(delta):
-            delta = 0.85 * sqrt_p * 2  # Fallback
-        
-        delta = int(delta)
-        
-        # Đảm bảo delta hợp lý:
-        # - Tối thiểu: 10% của √p hoặc 100
-        # - Tối đa: 2√p (trong Hasse bound)
-        delta_min = max(int(sqrt_p * 0.1), 100)
-        delta_max = int(2 * sqrt_p)
-        delta = max(delta_min, min(delta, delta_max))
-        
+    def predict_hasse_interval(self, p, a, b, n_samples=16):
+        _, delta = self.predict_trace(p, a, b, n_samples=n_samples)
         return delta
     
-    def predict_trace(self, p, a, b, n_samples=1):
+    def predict_trace(self, p, a, b, n_samples=16):
         """
         Dự đoán TRACE Frobenius và tính DELTA (khoảng Hasse thu hẹp) từ MODEL
         
         (Wrapper function để tương thích với code cũ)
         """
-        # Normalize input giống như training
-        # p_norm = log2(p) / bit_size
-        # a_norm = a / max_a
-        # b_norm = b / max_b
-        
-        # Xử lý overflow với số lớn (256-bit)
-        # Sử dụng log2 trực tiếp từ integer để tránh overflow khi convert sang float
+        # Chuẩn hóa đầu vào giống lúc huấn luyện
         p_log2 = None
-        try:
-            # Thử tính log2 từ integer trước (math.log2 có thể xử lý integer lớn)
-            if isinstance(p, (int, np.integer)) and p > 0:
-                try:
-                    p_log2 = math.log2(p)
-                except (OverflowError, ValueError):
-                    # Fallback: dùng bit_length để ước lượng log2
-                    p_log2 = p.bit_length() - 1 if hasattr(p, 'bit_length') else 0
-            else:
-                # Nếu p đã là float, thử convert
+        if isinstance(p, (int, np.integer)) and p > 0:
+            try:
+                p_log2 = math.log2(p)
+            except (OverflowError, ValueError):
+                p_log2 = None
+        if p_log2 is None:
+            try:
                 p_float = float(p)
                 if np.isfinite(p_float) and p_float > 0:
-                    p_log2 = np.log2(p_float)
-                else:
-                    # Fallback: dùng bit_length
-                    p_int = int(p) if hasattr(p, '__int__') else p
-                    p_log2 = p_int.bit_length() - 1 if hasattr(p_int, 'bit_length') else 0
-            p_norm = p_log2 / self.bit_size
-        except Exception:
-            # Ultimate fallback: ước lượng từ bit_length
-            try:
-                p_int = int(p) if hasattr(p, '__int__') else p
-                p_log2 = p_int.bit_length() - 1 if hasattr(p_int, 'bit_length') else self.bit_size
+                    p_log2 = math.log2(p_float)
             except Exception:
-                p_log2 = self.bit_size
-            p_norm = p_log2 / self.bit_size if p_log2 is not None else 1.0
-        
-        # Normalize a, b với xử lý overflow
-        # Với số lớn, normalize theo p thay vì max_a/max_b để tránh overflow
+                p_log2 = None
+        if p_log2 is None:
+            try:
+                p_int = int(p)
+                p_log2 = p_int.bit_length() - 1
+            except Exception:
+                p_log2 = float(self.bit_size)
+
+        p_norm = float(np.clip(p_log2 / self.bit_size, 0.0, 1.0))
+
         try:
-            a_float = float(a)
-            p_float = float(p)
-            if not np.isinf(a_float) and not np.isinf(p_float) and p_float > 0:
-                # Ưu tiên normalize theo p (a < p nên a/p < 1)
-                a_norm = a_float / p_float
-            elif self.max_a > 0 and not np.isinf(a_float):
-                a_norm = a_float / self.max_a
-            else:
-                a_norm = 0.0
-        except (OverflowError, ValueError):
-            # Fallback: normalize theo p sử dụng log scale
-            try:
-                if isinstance(p, (int, np.integer)) and isinstance(a, (int, np.integer)) and p > 0 and a > 0:
-                    # Sử dụng log scale để tránh overflow
-                    a_log2 = math.log2(a)
-                    p_log2_val = p_log2 if p_log2 is not None else math.log2(p)
-                    a_norm = a_log2 / p_log2_val if p_log2_val > 0 else 0.5
-                else:
-                    a_norm = 0.5  # Default value
-            except Exception:
-                a_norm = 0.5  # Ultimate fallback
-        
+            a_norm = float(a) / self.max_a if self.max_a else 0.0
+        except (OverflowError, ValueError, ZeroDivisionError):
+            a_norm = 0.0
         try:
-            b_float = float(b)
-            p_float = float(p)
-            if not np.isinf(b_float) and not np.isinf(p_float) and p_float > 0:
-                # Ưu tiên normalize theo p (b < p nên b/p < 1)
-                b_norm = b_float / p_float
-            elif self.max_b > 0 and not np.isinf(b_float):
-                b_norm = b_float / self.max_b
-            else:
-                b_norm = 0.0
-        except (OverflowError, ValueError):
-            # Fallback: normalize theo p sử dụng log scale
-            try:
-                if isinstance(p, (int, np.integer)) and isinstance(b, (int, np.integer)) and p > 0 and b > 0:
-                    b_log2 = math.log2(b)
-                    p_log2_val = p_log2 if p_log2 is not None else math.log2(p)
-                    b_norm = b_log2 / p_log2_val if p_log2_val > 0 else 0.5
-                else:
-                    b_norm = 0.5  # Default value
-            except Exception:
-                b_norm = 0.5  # Ultimate fallback
-        
-        # Clip để đảm bảo trong [0, 1] (hoặc phạm vi hợp lệ)
-        p_norm = np.clip(p_norm, 0.0, 1.0)
-        a_norm = np.clip(a_norm, 0.0, 1.0)
-        b_norm = np.clip(b_norm, 0.0, 1.0)
-        
+            b_norm = float(b) / self.max_b if self.max_b else 0.0
+        except (OverflowError, ValueError, ZeroDivisionError):
+            b_norm = 0.0
+
+        a_norm = float(np.clip(a_norm, 0.0, 1.0))
+        b_norm = float(np.clip(b_norm, 0.0, 1.0))
+
         X = np.array([[p_norm, a_norm, b_norm]], dtype=np.float32)
-        
-        # Tính sqrt_p với xử lý overflow
+
         try:
-            sqrt_p = np.sqrt(float(p))
-            if np.isinf(sqrt_p) or np.isnan(sqrt_p):
-                # Fallback: ước lượng sqrt từ log2
-                if p_log2 is not None:
-                    sqrt_p = np.exp2(p_log2 / 2.0)
-                else:
-                    sqrt_p = np.exp2(self.bit_size / 2.0)
+            sqrt_p = math.sqrt(float(p))
         except (OverflowError, ValueError):
-            # Fallback: ước lượng sqrt từ log2
-            if p_log2 is not None:
-                sqrt_p = np.exp2(p_log2 / 2.0)
-            else:
-                sqrt_p = np.exp2(self.bit_size / 2.0)
-        
-        
-        # MONTE CARLO DROPOUT
-        predictions_norm = []
-        for _ in range(n_samples):
+            sqrt_p = math.sqrt(2 ** self.bit_size)
+
+        predictions = []
+        samples = max(n_samples, 8)
+        for _ in range(samples):
             try:
-                y_norm = self.model(X, training=True).numpy()[0][0]
-                y_norm_float = float(y_norm)
-                # Only add valid predictions
-                if np.isfinite(y_norm_float):
-                    predictions_norm.append(y_norm_float)
+                val = float(self.model(X, training=True).numpy()[0][0])
+                if np.isfinite(val):
+                    predictions.append(val)
             except Exception:
-                # Skip invalid predictions
                 continue
-        
-        # If no valid predictions, use fallback
-        if len(predictions_norm) == 0:
+
+        if len(predictions) < 2:
             try:
-                # Last resort: use model.predict
-                y_norm = self.model.predict(X, verbose=0)[0][0]
-                y_norm_float = float(y_norm)
-                if np.isfinite(y_norm_float):
-                    predictions_norm = [y_norm_float]
-                else:
-                    predictions_norm = [0.5]  # Ultimate fallback
+                val = float(self.model.predict(X, verbose=0)[0][0])
             except Exception:
-                predictions_norm = [0.5]  # Ultimate fallback
-        
-        predictions_norm = np.array(predictions_norm)
-        
-        # Kiểm tra NaN hoặc inf
-        if np.any(np.isnan(predictions_norm)) or np.any(np.isinf(predictions_norm)):
-            # Fallback: predict 1 lần không có dropout
-            try:
-                y_norm = self.model.predict(X, verbose=0)[0][0]
-                if np.isnan(y_norm) or np.isinf(y_norm):
-                    y_norm = 0.5  # Center value
-                mean_norm = float(y_norm)
-            except Exception:
-                mean_norm = 0.5  # Ultimate fallback
-            std_norm = 0.85 / (2.5 * 4)  # Fallback
+                val = 0.5
+            if not np.isfinite(val):
+                val = 0.5
+            predictions = [val]
+
+        preds = np.array(predictions, dtype=float)
+
+        if np.any(np.isnan(preds)) or np.any(np.isinf(preds)):
+            mean_norm = 0.5
+            std_norm = 0.25
         else:
-            mean_norm = float(np.mean(predictions_norm))
-            std_norm = float(np.std(predictions_norm))
-            if std_norm == 0 or np.isnan(std_norm) or np.isinf(std_norm):
-                std_norm = 0.85 / (2.5 * 4)  # Fallback
-        
-        # Validate mean_norm
-        if not np.isfinite(mean_norm):
-            mean_norm = 0.5  # Center value (corresponds to trace = 0)
-        mean_norm = float(np.clip(mean_norm, 0.0, 1.0))  # Ensure in [0, 1] for sigmoid output
-        
-        # Trace prediction
-        trace_pred = (mean_norm - 0.5) * 4 * sqrt_p
-        
-        # Validate trace_pred
+            mean_norm = float(np.mean(preds))
+            std_norm = float(np.std(preds, ddof=0))
+            if not np.isfinite(mean_norm):
+                mean_norm = 0.5
+            if not np.isfinite(std_norm) or std_norm < 1e-4:
+                std_norm = 0.25
+
+        mean_norm = float(np.clip(mean_norm, 0.0, 1.0))
+
+        trace_pred = (mean_norm - 0.5) * 4.0 * sqrt_p
         if not np.isfinite(trace_pred):
-            trace_pred = 0.0  # Fallback: trace = 0 (center of Hasse bound)
-        
-        # Clip trace_pred to Hasse bound [-2√p, 2√p]
-        hasse_half = 2 * sqrt_p
+            trace_pred = 0.0
+
+        hasse_half = 2.0 * sqrt_p
         trace_pred = float(np.clip(trace_pred, -hasse_half, hasse_half))
-        
-        # Delta từ uncertainty
-        std_trace = std_norm * 4 * sqrt_p
-        confidence_factor = 2.5
-        delta = confidence_factor * std_trace
-    
-        # Kiểm tra NaN
+
+        std_trace = max(std_norm * 4.0 * sqrt_p, sqrt_p * 0.05)
+        delta = std_trace * 2.5
         if not np.isfinite(delta):
-            delta = 0.85 * hasse_half  # Fallback
-        
-        delta = float(delta)
-        
-        # Giới hạn delta
-        delta_min = max(sqrt_p * 0.1, 100.0)
+            delta = 0.85 * hasse_half
+            print(f"=============== Delta is not finite, using {delta} ===============")
+
+        delta_min = max(sqrt_p * 0.1, 50.0)
         delta_max = hasse_half
         delta = float(np.clip(delta, delta_min, delta_max))
-        
+
         return int(round(trace_pred)), int(round(delta))
         

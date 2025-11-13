@@ -1,0 +1,632 @@
+
+================================================================================
+Test run at: 2025-11-13 18:04:46
+Testing 100 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 100 curves) ===
+
+--- Curve 1/100 ---
+  Trace thực: 85625, AI: -509, Sai số: 86134
+  Khoảng AI: (-55000, 53982), Trong khoảng: False
+  Order base: 4109620633, Order AI: 4109761258, Đúng: False
+  Time base: 0.0015s, Time AI: 0.0495s, Giảm: -3161.3%
+
+--- Curve 2/100 ---
+  Trace thực: -11207, AI: -482, Sai số: 10725
+  Khoảng AI: (-52095, 51131), Trong khoảng: True
+  Order base: 3687139277, Order AI: 3687139277, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0087s, Giảm: -2811.2%
+
+--- Curve 3/100 ---
+  Trace thực: 8027, AI: -520, Sai số: 8547
+  Khoảng AI: (-56107, 55067), Trong khoảng: True
+  Order base: 4276691823, Order AI: 4276691823, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0084s, Giảm: -2311.7%
+
+--- Curve 4/100 ---
+  Trace thực: 61754, AI: -500, Sai số: 62254
+  Khoảng AI: (-54000, 53000), Trong khoảng: False
+  Order base: 3961511820, Order AI: 3961627574, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0115s, Giảm: -3095.5%
+
+--- Curve 5/100 ---
+  Trace thực: -81358, AI: -388, Sai số: 80970
+  Khoảng AI: (-41941, 41165), Trong khoảng: False
+  Order base: 2389864470, Order AI: 2389825053, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0106s, Giảm: -2842.9%
+
+--- Curve 6/100 ---
+  Trace thực: 18750, AI: -410, Sai số: 19160
+  Khoảng AI: (-44226, 43406), Trong khoảng: True
+  Order base: 2657232378, Order AI: 2657232378, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0098s, Giảm: -3033.4%
+
+--- Curve 7/100 ---
+  Trace thực: 30469, AI: -441, Sai số: 30910
+  Khoảng AI: (-47578, 46696), Trong khoảng: True
+  Order base: 3075322745, Order AI: 3075322745, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0106s, Giảm: -2372.9%
+
+--- Curve 8/100 ---
+  Trace thực: 76320, AI: -428, Sai số: 76748
+  Khoảng AI: (-46202, 45346), Trong khoảng: False
+  Order base: 2899901568, Order AI: 2900024090, Đúng: False
+  Time base: 0.0006s, Time AI: 0.0130s, Giảm: -2017.9%
+
+--- Curve 9/100 ---
+  Trace thực: 78824, AI: -405, Sai số: 79229
+  Khoảng AI: (-43751, 42941), Trong khoảng: False
+  Order base: 2600487360, Order AI: 2600609935, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0148s, Giảm: -4432.6%
+
+--- Curve 10/100 ---
+  Trace thực: -45136, AI: -493, Sai số: 44643
+  Khoảng AI: (-53197, 52211), Trong khoảng: True
+  Order base: 3844583820, Order AI: 3844583820, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0123s, Giảm: -2853.9%
+
+--- Curve 11/100 ---
+  Trace thực: 19034, AI: -461, Sai số: 19495
+  Khoảng AI: (-49794, 48872), Trong khoảng: True
+  Order base: 3368505130, Order AI: 3368505130, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0111s, Giảm: -3415.4%
+
+--- Curve 12/100 ---
+  Trace thực: 71891, AI: -459, Sai số: 72350
+  Khoảng AI: (-49610, 48692), Trong khoảng: False
+  Order base: 3343616907, Order AI: 3343738408, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0099s, Giảm: -2564.2%
+
+--- Curve 13/100 ---
+  Trace thực: 10439, AI: -483, Sai số: 10922
+  Khoảng AI: (-52148, 51182), Trong khoảng: True
+  Order base: 3694538265, Order AI: 3694538265, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0095s, Giảm: -2212.5%
+
+--- Curve 14/100 ---
+  Trace thực: 50576, AI: -491, Sai số: 51067
+  Khoảng AI: (-52999, 52017), Trong khoảng: True
+  Order base: 3815929044, Order AI: 3815929044, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0127s, Giảm: -3540.5%
+
+--- Curve 15/100 ---
+  Trace thực: -90957, AI: -493, Sai số: 90464
+  Khoảng AI: (-53199, 52213), Trong khoảng: False
+  Order base: 3844976669, Order AI: 3844938911, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0113s, Giảm: -3218.5%
+
+--- Curve 16/100 ---
+  Trace thực: -97945, AI: -467, Sai số: 97478
+  Khoảng AI: (-50391, 49457), Trong khoảng: False
+  Order base: 3449804925, Order AI: 3449757371, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0128s, Giảm: -2815.1%
+
+--- Curve 17/100 ---
+  Trace thực: -103590, AI: -508, Sai số: 103082
+  Khoảng AI: (-54858, 53842), Trong khoảng: False
+  Order base: 4088522340, Order AI: 4088473608, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0101s, Giảm: -2523.5%
+
+--- Curve 18/100 ---
+  Trace thực: 73838, AI: -447, Sai số: 74285
+  Khoảng AI: (-48313, 47419), Trong khoảng: False
+  Order base: 3171080704, Order AI: 3171202855, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0097s, Giảm: -2839.2%
+
+--- Curve 19/100 ---
+  Trace thực: 68416, AI: -382, Sai số: 68798
+  Khoảng AI: (-41244, 40480), Trong khoảng: False
+  Order base: 2310986692, Order AI: 2311096352, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0105s, Giảm: -3285.7%
+
+--- Curve 20/100 ---
+  Trace thực: 34468, AI: -377, Sai số: 34845
+  Khoảng AI: (-40706, 39952), Trong khoảng: True
+  Order base: 2251074550, Order AI: 2251074550, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0103s, Giảm: -3193.7%
+
+--- Curve 21/100 ---
+  Trace thực: -13500, AI: -385, Sai số: 13115
+  Khoảng AI: (-41601, 40831), Trong khoảng: True
+  Order base: 2351221040, Order AI: 2351221040, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0093s, Giảm: -2595.6%
+
+--- Curve 22/100 ---
+  Trace thực: -61333, AI: -446, Sai số: 60887
+  Khoảng AI: (-48183, 47291), Trong khoảng: False
+  Order base: 3154153687, Order AI: 3154140537, Đúng: False
+  Time base: 0.0006s, Time AI: 0.0107s, Giảm: -1556.2%
+
+--- Curve 23/100 ---
+  Trace thực: -71293, AI: -388, Sai số: 70905
+  Khoảng AI: (-41889, 41113), Trong khoảng: False
+  Order base: 2383884087, Order AI: 2383854683, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0109s, Giảm: -3233.5%
+
+--- Curve 24/100 ---
+  Trace thực: -69420, AI: -407, Sai số: 69013
+  Khoảng AI: (-43910, 43096), Trong khoảng: False
+  Order base: 2619476312, Order AI: 2619450802, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0097s, Giảm: -2347.8%
+
+--- Curve 25/100 ---
+  Trace thực: -44085, AI: -506, Sai số: 43579
+  Khoảng AI: (-54587, 53575), Trong khoảng: True
+  Order base: 4048216707, Order AI: 4048216707, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0122s, Giảm: -3592.6%
+
+--- Curve 26/100 ---
+  Trace thực: 69607, AI: -499, Sai số: 70106
+  Khoảng AI: (-53839, 52841), Trong khoảng: False
+  Order base: 3937827811, Order AI: 3937951257, Đúng: False
+  Time base: 0.0005s, Time AI: 0.0121s, Giảm: -2233.0%
+
+--- Curve 27/100 ---
+  Trace thực: 74536, AI: -414, Sai số: 74950
+  Khoảng AI: (-44745, 43917), Trong khoảng: False
+  Order base: 2719977794, Order AI: 2720097075, Đúng: False
+  Time base: 0.0007s, Time AI: 0.0138s, Giảm: -1978.1%
+
+--- Curve 28/100 ---
+  Trace thực: -89537, AI: -481, Sai số: 89056
+  Khoảng AI: (-51930, 50968), Trong khoảng: False
+  Order base: 3663788425, Order AI: 3663750818, Đúng: False
+  Time base: 0.0006s, Time AI: 0.0125s, Giảm: -1892.9%
+
+--- Curve 29/100 ---
+  Trace thực: 24274, AI: -410, Sai số: 24684
+  Khoảng AI: (-44280, 43460), Trong khoảng: True
+  Order base: 2663770226, Order AI: 2663770226, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0114s, Giảm: -3507.5%
+
+--- Curve 30/100 ---
+  Trace thực: 30038, AI: -386, Sai số: 30424
+  Khoảng AI: (-41724, 40952), Trong khoảng: True
+  Order base: 2365141224, Order AI: 2365141224, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0115s, Giảm: -3079.4%
+
+--- Curve 31/100 ---
+  Trace thực: 58026, AI: -477, Sai số: 58503
+  Khoảng AI: (-51516, 50562), Trong khoảng: False
+  Order base: 3605402984, Order AI: 3605512526, Đúng: False
+  Time base: 0.0006s, Time AI: 0.0127s, Giảm: -2074.1%
+
+--- Curve 32/100 ---
+  Trace thực: -90061, AI: -480, Sai số: 89581
+  Khoảng AI: (-51785, 50825), Trong khoảng: False
+  Order base: 3643286449, Order AI: 3643248173, Đúng: False
+  Time base: 0.0007s, Time AI: 0.0140s, Giảm: -2025.4%
+
+--- Curve 33/100 ---
+  Trace thực: -38957, AI: -437, Sai số: 38520
+  Khoảng AI: (-47215, 46341), Trong khoảng: True
+  Order base: 3028663495, Order AI: 3028663495, Đúng: True
+  Time base: 0.0005s, Time AI: 0.0128s, Giảm: -2600.7%
+
+--- Curve 34/100 ---
+  Trace thực: 42633, AI: -482, Sai số: 43115
+  Khoảng AI: (-52057, 51093), Trong khoảng: True
+  Order base: 3681627749, Order AI: 3681627749, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0132s, Giảm: -2905.3%
+
+--- Curve 35/100 ---
+  Trace thực: -63615, AI: -508, Sai số: 63107
+  Khoảng AI: (-54858, 53842), Trong khoảng: False
+  Order base: 4088517287, Order AI: 4088508530, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0098s, Giảm: -2434.6%
+
+--- Curve 36/100 ---
+  Trace thực: -11517, AI: -497, Sai số: 11020
+  Khoảng AI: (-53637, 52643), Trong khoảng: True
+  Order base: 3908466641, Order AI: 3908466641, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0117s, Giảm: -2941.1%
+
+--- Curve 37/100 ---
+  Trace thực: 22672, AI: -488, Sai số: 23160
+  Khoảng AI: (-52740, 51764), Trong khoảng: True
+  Order base: 3778885996, Order AI: 3778885996, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0103s, Giảm: -3229.3%
+
+--- Curve 38/100 ---
+  Trace thực: -29126, AI: -389, Sai số: 28737
+  Khoảng AI: (-42018, 41240), Trong khoảng: True
+  Order base: 2398567694, Order AI: 2398567694, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0099s, Giảm: -2993.2%
+
+--- Curve 39/100 ---
+  Trace thực: 29654, AI: -382, Sai số: 30036
+  Khoảng AI: (-41299, 40535), Trong khoảng: True
+  Order base: 2317190106, Order AI: 2317190106, Đúng: True
+  Time base: 0.0006s, Time AI: 0.0099s, Giảm: -1680.6%
+
+--- Curve 40/100 ---
+  Trace thực: 52920, AI: -446, Sai số: 53366
+  Khoảng AI: (-48212, 47320), Trong khoảng: False
+  Order base: 3157816104, Order AI: 3157917236, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0108s, Giảm: -3374.3%
+
+--- Curve 41/100 ---
+  Trace thực: 86211, AI: -386, Sai số: 86597
+  Khoảng AI: (-41682, 40910), Trong khoảng: False
+  Order base: 2360292761, Order AI: 2360420654, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0093s, Giảm: -2718.4%
+
+--- Curve 42/100 ---
+  Trace thực: -83919, AI: -394, Sai số: 83525
+  Khoảng AI: (-42591, 41803), Trong khoảng: False
+  Order base: 2464616943, Order AI: 2464575615, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0095s, Giảm: -2027.0%
+
+--- Curve 43/100 ---
+  Trace thực: -109867, AI: -476, Sai số: 109391
+  Khoảng AI: (-51444, 50492), Trong khoảng: False
+  Order base: 3595566279, Order AI: 3595507856, Đúng: False
+  Time base: 0.0007s, Time AI: 0.0116s, Giảm: -1546.9%
+
+--- Curve 44/100 ---
+  Trace thực: 74410, AI: -443, Sai số: 74853
+  Khoảng AI: (-47793, 46907), Trong khoảng: False
+  Order base: 3103040308, Order AI: 3103162511, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0117s, Giảm: -3390.8%
+
+--- Curve 45/100 ---
+  Trace thực: 23867, AI: -482, Sai số: 24349
+  Khoảng AI: (-52077, 51113), Trong khoảng: True
+  Order base: 3684505683, Order AI: 3684505683, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0098s, Giảm: -2238.4%
+
+--- Curve 46/100 ---
+  Trace thực: -9636, AI: -380, Sai số: 9256
+  Khoảng AI: (-41057, 40297), Trong khoảng: True
+  Order base: 2290193574, Order AI: 2290193574, Đúng: True
+  Time base: 0.0005s, Time AI: 0.0117s, Giảm: -2328.7%
+
+--- Curve 47/100 ---
+  Trace thực: -102480, AI: -427, Sai số: 102053
+  Khoảng AI: (-46119, 45265), Trong khoảng: False
+  Order base: 2889788820, Order AI: 2889732459, Đúng: False
+  Time base: 0.0005s, Time AI: 0.0102s, Giảm: -1853.3%
+
+--- Curve 48/100 ---
+  Trace thực: 109295, AI: -442, Sai số: 109737
+  Khoảng AI: (-47740, 46856), Trong khoảng: False
+  Order base: 3096243837, Order AI: 3096400872, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0109s, Giảm: -3103.5%
+
+--- Curve 49/100 ---
+  Trace thực: 9132, AI: -434, Sai số: 9566
+  Khoảng AI: (-46817, 45949), Trong khoảng: True
+  Order base: 2977653000, Order AI: 2977653000, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0094s, Giảm: -3094.2%
+
+--- Curve 50/100 ---
+  Trace thực: -7620, AI: -520, Sai số: 7100
+  Khoảng AI: (-56180, 55140), Trong khoảng: True
+  Order base: 4288010378, Order AI: 4288010378, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0095s, Giảm: -2673.6%
+
+--- Curve 51/100 ---
+  Trace thực: 26322, AI: -418, Sai số: 26740
+  Khoảng AI: (-45129, 44293), Trong khoảng: True
+  Order base: 2766827982, Order AI: 2766827982, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0111s, Giảm: -3180.7%
+
+--- Curve 52/100 ---
+  Trace thực: -1325, AI: -420, Sai số: 905
+  Khoảng AI: (-45348, 44508), Trong khoảng: True
+  Order base: 2793837263, Order AI: 2793837263, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0096s, Giảm: -3178.7%
+
+--- Curve 53/100 ---
+  Trace thực: 30450, AI: -441, Sai số: 30891
+  Khoảng AI: (-47582, 46700), Trong khoảng: True
+  Order base: 3075791072, Order AI: 3075791072, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0096s, Giảm: -2383.5%
+
+--- Curve 54/100 ---
+  Trace thực: -48554, AI: -405, Sai số: 48149
+  Khoảng AI: (-43737, 42927), Trong khoảng: False
+  Order base: 2598921772, Order AI: 2598916955, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0103s, Giảm: -2520.3%
+
+--- Curve 55/100 ---
+  Trace thực: 14891, AI: -415, Sai số: 15306
+  Khoảng AI: (-44836, 44006), Trong khoảng: True
+  Order base: 2731046977, Order AI: 2731046977, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0111s, Giảm: -3554.7%
+
+--- Curve 56/100 ---
+  Trace thực: -20899, AI: -447, Sai số: 20452
+  Khoảng AI: (-48221, 47327), Trong khoảng: True
+  Order base: 3158926803, Order AI: 3158926803, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0101s, Giảm: -3108.2%
+
+--- Curve 57/100 ---
+  Trace thực: 45238, AI: -454, Sai số: 45692
+  Khoảng AI: (-48970, 48062), Trong khoảng: True
+  Order base: 3257864900, Order AI: 3257864900, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0092s, Giảm: -2187.8%
+
+--- Curve 58/100 ---
+  Trace thực: -53514, AI: -426, Sai số: 53088
+  Khoảng AI: (-45987, 45135), Trong khoảng: False
+  Order base: 2873153042, Order AI: 2873145515, Đúng: False
+  Time base: 0.0006s, Time AI: 0.0108s, Giảm: -1855.8%
+
+--- Curve 59/100 ---
+  Trace thực: 4086, AI: -397, Sai số: 4483
+  Khoảng AI: (-42899, 42105), Trong khoảng: True
+  Order base: 2500231956, Order AI: 2500231956, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0101s, Giảm: -3409.4%
+
+--- Curve 60/100 ---
+  Trace thực: 40140, AI: -430, Sai số: 40570
+  Khoảng AI: (-46416, 45556), Trong khoảng: True
+  Order base: 2926884924, Order AI: 2926884924, Đúng: True
+  Time base: 0.0005s, Time AI: 0.0098s, Giảm: -2039.9%
+
+--- Curve 61/100 ---
+  Trace thực: 62860, AI: -414, Sai số: 63274
+  Khoảng AI: (-44700, 43872), Trong khoảng: False
+  Order base: 2714473040, Order AI: 2714580600, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0096s, Giảm: -2514.7%
+
+--- Curve 62/100 ---
+  Trace thực: -39470, AI: -467, Sai số: 39003
+  Khoảng AI: (-50442, 49508), Trong khoảng: True
+  Order base: 3456747820, Order AI: 3456747820, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0118s, Giảm: -3832.9%
+
+--- Curve 63/100 ---
+  Trace thực: 83604, AI: -401, Sai số: 84005
+  Khoảng AI: (-43310, 42508), Trong khoảng: False
+  Order base: 2548266536, Order AI: 2548393450, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0104s, Giảm: -3327.7%
+
+--- Curve 64/100 ---
+  Trace thực: -67026, AI: -440, Sai số: 66586
+  Khoảng AI: (-47527, 46647), Trong khoảng: False
+  Order base: 3068875604, Order AI: 3068856105, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0091s, Giảm: -2336.0%
+
+--- Curve 65/100 ---
+  Trace thực: 56273, AI: -372, Sai số: 56645
+  Khoảng AI: (-40169, 39425), Trong khoảng: False
+  Order base: 2192094795, Order AI: 2192191237, Đúng: False
+  Time base: 0.0005s, Time AI: 0.0099s, Giảm: -2006.8%
+
+--- Curve 66/100 ---
+  Trace thực: 20379, AI: -437, Sai số: 20816
+  Khoảng AI: (-47235, 46361), Trong khoảng: True
+  Order base: 3031253363, Order AI: 3031253363, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0105s, Giảm: -3366.1%
+
+--- Curve 67/100 ---
+  Trace thực: -69846, AI: -381, Sai số: 69465
+  Khoảng AI: (-41180, 40418), Trong khoảng: False
+  Order base: 2303909760, Order AI: 2303881094, Đúng: False
+  Time base: 0.0005s, Time AI: 0.0104s, Giảm: -2111.7%
+
+--- Curve 68/100 ---
+  Trace thực: -13196, AI: -474, Sai số: 12722
+  Khoảng AI: (-51147, 50199), Trong khoảng: True
+  Order base: 3553980634, Order AI: 3553980634, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0098s, Giảm: -2362.8%
+
+--- Curve 69/100 ---
+  Trace thực: -80488, AI: -434, Sai số: 80054
+  Khoảng AI: (-46852, 45984), Trong khoảng: False
+  Order base: 2982302148, Order AI: 2982268512, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0111s, Giảm: -2999.1%
+
+--- Curve 70/100 ---
+  Trace thực: 61162, AI: -419, Sai số: 61581
+  Khoảng AI: (-45235, 44397), Trong khoảng: False
+  Order base: 2779875326, Order AI: 2779981723, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0096s, Giảm: -2878.9%
+
+--- Curve 71/100 ---
+  Trace thực: 113638, AI: -482, Sai số: 114120
+  Khoảng AI: (-52036, 51072), Trong khoảng: False
+  Order base: 3678451636, Order AI: 3678617310, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0092s, Giảm: -2390.1%
+
+--- Curve 72/100 ---
+  Trace thực: 12086, AI: -410, Sai số: 12496
+  Khoảng AI: (-44317, 43497), Trong khoảng: True
+  Order base: 2668215744, Order AI: 2668215744, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0100s, Giảm: -2414.8%
+
+--- Curve 73/100 ---
+  Trace thực: -74048, AI: -435, Sai số: 73613
+  Khoảng AI: (-46974, 46104), Trong khoảng: False
+  Order base: 2997850448, Order AI: 2997823374, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0097s, Giảm: -3017.1%
+
+--- Curve 74/100 ---
+  Trace thực: -21868, AI: -453, Sai số: 21415
+  Khoảng AI: (-48912, 48006), Trong khoảng: True
+  Order base: 3250225948, Order AI: 3250225948, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0089s, Giảm: -2094.4%
+
+--- Curve 75/100 ---
+  Trace thực: 3300, AI: -370, Sai số: 3670
+  Khoảng AI: (-39976, 39236), Trong khoảng: True
+  Order base: 2171090540, Order AI: 2171090540, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0096s, Giảm: -2474.6%
+
+--- Curve 76/100 ---
+  Trace thực: 48808, AI: -485, Sai số: 49293
+  Khoảng AI: (-52328, 51358), Trong khoảng: True
+  Order base: 3719896306, Order AI: 3719896306, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0117s, Giảm: -3473.4%
+
+--- Curve 77/100 ---
+  Trace thực: -15195, AI: -455, Sai số: 14740
+  Khoảng AI: (-49144, 48234), Trong khoảng: True
+  Order base: 3281161767, Order AI: 3281161767, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0108s, Giảm: -2830.7%
+
+--- Curve 78/100 ---
+  Trace thực: -72766, AI: -392, Sai số: 72374
+  Khoảng AI: (-42327, 41543), Trong khoảng: False
+  Order base: 2434009488, Order AI: 2433979049, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0092s, Giảm: -2270.9%
+
+--- Curve 79/100 ---
+  Trace thực: 47600, AI: -410, Sai số: 48010
+  Khoảng AI: (-44254, 43434), Trong khoảng: False
+  Order base: 2660591820, Order AI: 2660683674, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0106s, Giảm: -2288.2%
+
+--- Curve 80/100 ---
+  Trace thực: -5101, AI: -457, Sai số: 4644
+  Khoảng AI: (-49333, 48419), Trong khoảng: True
+  Order base: 3306444153, Order AI: 3306444153, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0115s, Giảm: -3677.4%
+
+--- Curve 81/100 ---
+  Trace thực: -60526, AI: -409, Sai số: 60117
+  Khoảng AI: (-44147, 43329), Trong khoảng: False
+  Order base: 2647870236, Order AI: 2647853857, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0102s, Giảm: -2958.0%
+
+--- Curve 82/100 ---
+  Trace thực: -2566, AI: -372, Sai số: 2194
+  Khoảng AI: (-40208, 39464), Trong khoảng: True
+  Order base: 2196405444, Order AI: 2196405444, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0094s, Giảm: -2093.6%
+
+--- Curve 83/100 ---
+  Trace thực: 79735, AI: -451, Sai số: 80186
+  Khoảng AI: (-48698, 47796), Trong khoảng: False
+  Order base: 3221782447, Order AI: 3221910880, Đúng: False
+  Time base: 0.0007s, Time AI: 0.0126s, Giảm: -1653.1%
+
+--- Curve 84/100 ---
+  Trace thực: 89184, AI: -414, Sai số: 89598
+  Khoảng AI: (-44690, 43862), Trong khoảng: False
+  Order base: 2713199256, Order AI: 2713333130, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0117s, Giảm: -3311.6%
+
+--- Curve 85/100 ---
+  Trace thực: -92980, AI: -417, Sai số: 92563
+  Khoảng AI: (-45027, 44193), Trong khoảng: False
+  Order base: 2754533478, Order AI: 2754485525, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0093s, Giảm: -2708.4%
+
+--- Curve 86/100 ---
+  Trace thực: -41665, AI: -389, Sai số: 41276
+  Khoảng AI: (-41954, 41176), Trong khoảng: True
+  Order base: 2391237807, Order AI: 2391237807, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0091s, Giảm: -2335.8%
+
+--- Curve 87/100 ---
+  Trace thực: 60054, AI: -389, Sai số: 60443
+  Khoảng AI: (-42014, 41236), Trong khoảng: False
+  Order base: 2398107990, Order AI: 2398210058, Đúng: False
+  Time base: 0.0005s, Time AI: 0.0103s, Giảm: -2186.2%
+
+--- Curve 88/100 ---
+  Trace thực: 35802, AI: -502, Sai số: 36304
+  Khoảng AI: (-54186, 53182), Trong khoảng: True
+  Order base: 3988923258, Order AI: 3988923258, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0126s, Giảm: -3380.6%
+
+--- Curve 89/100 ---
+  Trace thực: -107036, AI: -466, Sai số: 106570
+  Khoảng AI: (-50305, 49373), Trong khoảng: False
+  Order base: 3438046664, Order AI: 3437989933, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0097s, Giảm: -2662.6%
+
+--- Curve 90/100 ---
+  Trace thực: 35852, AI: -378, Sai số: 36230
+  Khoảng AI: (-40815, 40059), Trong khoảng: True
+  Order base: 2263123648, Order AI: 2263123648, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0090s, Giảm: -2520.1%
+
+--- Curve 91/100 ---
+  Trace thực: -28959, AI: -462, Sai số: 28497
+  Khoảng AI: (-49837, 48913), Trong khoảng: True
+  Order base: 3374332983, Order AI: 3374332983, Đúng: True
+  Time base: 0.0005s, Time AI: 0.0100s, Giảm: -1881.8%
+
+--- Curve 92/100 ---
+  Trace thực: -60762, AI: -421, Sai số: 60341
+  Khoảng AI: (-45450, 44608), Trong khoảng: False
+  Order base: 2806467204, Order AI: 2806451892, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0103s, Giảm: -3275.4%
+
+--- Curve 93/100 ---
+  Trace thực: 75806, AI: -420, Sai số: 76226
+  Khoảng AI: (-45344, 44504), Trong khoảng: False
+  Order base: 2793180172, Order AI: 2793301322, Đúng: False
+  Time base: 0.0004s, Time AI: 0.0100s, Giảm: -2196.7%
+
+--- Curve 94/100 ---
+  Trace thực: 8593, AI: -382, Sai số: 8975
+  Khoảng AI: (-41276, 40512), Trong khoảng: True
+  Order base: 2314611655, Order AI: 2314611655, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0095s, Giảm: -3011.8%
+
+--- Curve 95/100 ---
+  Trace thực: -67761, AI: -383, Sai số: 67378
+  Khoảng AI: (-41317, 40551), Trong khoảng: False
+  Order base: 2319263975, Order AI: 2319237531, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0103s, Giảm: -3065.6%
+
+--- Curve 96/100 ---
+  Trace thực: 46764, AI: -419, Sai số: 47183
+  Khoảng AI: (-45231, 44393), Trong khoảng: False
+  Order base: 2779317290, Order AI: 2779409285, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0094s, Giảm: -2778.4%
+
+--- Curve 97/100 ---
+  Trace thực: 16809, AI: -432, Sai số: 17241
+  Khoảng AI: (-46609, 45745), Trong khoảng: True
+  Order base: 2951227619, Order AI: 2951227619, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0124s, Giảm: -2687.1%
+
+--- Curve 98/100 ---
+  Trace thực: -27208, AI: -489, Sai số: 26719
+  Khoảng AI: (-52828, 51850), Trong khoảng: True
+  Order base: 3791519526, Order AI: 3791519526, Đúng: True
+  Time base: 0.0004s, Time AI: 0.0100s, Giảm: -2186.9%
+
+--- Curve 99/100 ---
+  Trace thực: -74070, AI: -471, Sai số: 73599
+  Khoảng AI: (-50854, 49912), Trong khoảng: False
+  Order base: 3513475692, Order AI: 3513452476, Đúng: False
+  Time base: 0.0003s, Time AI: 0.0105s, Giảm: -3247.3%
+
+--- Curve 100/100 ---
+  Trace thực: 39705, AI: -487, Sai số: 40192
+  Khoảng AI: (-52550, 51576), Trong khoảng: True
+  Order base: 3751628427, Order AI: 3751628427, Đúng: True
+  Time base: 0.0003s, Time AI: 0.0096s, Giảm: -2872.3%
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (100 curves)
+================================================================================
+Tổng số curve test: 100
+Số curve thành công: 100
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 49/100
+  Tỷ lệ Order đúng: 49.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 49/100
+  Tỷ lệ Trace trong khoảng: 49.0%
+  Sai số trace trung bình: 50310.31
+  Sai số trace min: 905.00, max: 114120.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0406s
+  Tổng thời gian AI-enhanced: 1.1007s
+  Tổng thời gian giảm: -2614.1%
+  Thời gian giảm trung bình mỗi curve: -2708.9%
+================================================================================
+

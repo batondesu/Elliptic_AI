@@ -1,0 +1,34 @@
+
+================================================================================
+Test run at: 2025-11-13 20:16:26
+Testing 200 curves with 128-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 128-bit, 200 curves) ===
+
+=== Bắt đầu test 200 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (200 curves)
+================================================================================
+Tổng số curve test: 200
+Số curve thành công: 200
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 200/200
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 200/200
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 13827150201735278592.00
+  Sai số trace min: 22005312313731116.00, max: 33099394505537290240.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 24.9541s
+  Tổng thời gian AI-enhanced: 22.9770s
+  Tổng thời gian giảm: 7.9%
+  Thời gian giảm trung bình mỗi curve: 7.0%
+================================================================================
+

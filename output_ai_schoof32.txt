@@ -1,0 +1,30 @@
+
+================================================================================
+Test run at: 2025-11-13 20:10:54
+Testing 1000 curves with 32-bit primes
+================================================================================
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (1000 curves)
+================================================================================
+Tổng số curve test: 1000
+Số curve thành công: 1000
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 1000/1000
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 1000/1000
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 45926.87
+  Sai số trace min: 17.00, max: 123396.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.5035s
+  Tổng thời gian AI-enhanced: 0.0950s
+  Tổng thời gian giảm: 81.1%
+  Thời gian giảm trung bình mỗi curve: 80.8%
+================================================================================
+
