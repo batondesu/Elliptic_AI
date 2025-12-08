@@ -28,3 +28,1575 @@ Tỷ lệ thành công: 100.0%
   Thời gian giảm trung bình mỗi curve: 80.8%
 ================================================================================
 
+
+================================================================================
+Test run at: 2025-12-08 13:09:06
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+⚠️ Lỗi trong quá trình test: __init__() got an unexpected keyword argument 'bit_size'
+
+================================================================================
+Test run at: 2025-12-08 13:10:11
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Lỗi khi test curve 1: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 2: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 3: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 4: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 5: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 6: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 7: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 8: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 9: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 10: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (0 curves)
+================================================================================
+Tổng số curve test: 0
+Số curve thành công: 0
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 0/0
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 0/0
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0240s
+  Tổng thời gian AI-enhanced: 0.0000s
+  Tổng thời gian giảm: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:12:43
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Lỗi khi test curve 1: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 2: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 3: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 4: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 5: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 6: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 7: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 8: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 9: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 10: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (0 curves)
+================================================================================
+Tổng số curve test: 0
+Số curve thành công: 0
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 0/0
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 0/0
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0183s
+  Tổng thời gian AI-enhanced: 0.0000s
+  Tổng thời gian giảm: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:14:41
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Lỗi khi test curve 1: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 2: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 3: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 4: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 5: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 6: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 7: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 8: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 9: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 10: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'int\'>", "<class \'sage.rings.integer.Integer\'>"})'}), <class 'NoneType'>
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (0 curves)
+================================================================================
+Tổng số curve test: 0
+Số curve thành công: 0
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 0/0
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 0/0
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0213s
+  Tổng thời gian AI-enhanced: 0.0000s
+  Tổng thời gian giảm: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:16:14
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Lỗi khi test curve 1: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 2: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 3: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 4: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 5: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 6: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 7: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 8: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 9: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+  ⚠️ Lỗi khi test curve 10: Failed to find data adapter that can handle input: (<class 'list'> containing values of types {'(<class \'list\'> containing values of types {"<class \'sage.rings.integer.Integer\'>", "<class \'int\'>"})'}), <class 'NoneType'>
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (0 curves)
+================================================================================
+Tổng số curve test: 0
+Số curve thành công: 0
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 0/0
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 0/0
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0175s
+  Tổng thời gian AI-enhanced: 0.0000s
+  Tổng thời gian giảm: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:22:45
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (7 curves)
+================================================================================
+Tổng số curve test: 7
+Số curve thành công: 7
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 7/7
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 7/7
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 60783.03
+  Sai số trace min: 16360.92, max: 96115.58
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0224s
+  Tổng thời gian AI-enhanced: 0.0015s
+  Tổng thời gian giảm: 93.2%
+  Thời gian giảm trung bình mỗi curve: 89.8%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:24:03
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 5
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 42639.09
+  Sai số trace min: 16451.95, max: 91617.77
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0204s
+  Tổng thời gian AI-enhanced: 0.0013s
+  Tổng thời gian giảm: 93.4%
+  Thời gian giảm trung bình mỗi curve: 92.2%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:24:54
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (4 curves)
+================================================================================
+Tổng số curve test: 4
+Số curve thành công: 4
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 4/4
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 4/4
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 45990.07
+  Sai số trace min: 16702.56, max: 64839.59
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0213s
+  Tổng thời gian AI-enhanced: 0.0013s
+  Tổng thời gian giảm: 94.1%
+  Thời gian giảm trung bình mỗi curve: 91.7%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:25:44
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 5
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 53649.04
+  Sai số trace min: 33767.40, max: 91803.11
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0240s
+  Tổng thời gian AI-enhanced: 0.0014s
+  Tổng thời gian giảm: 94.0%
+  Thời gian giảm trung bình mỗi curve: 93.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:27:04
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 5
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 55379.00
+  Sai số trace min: 37322.00, max: 78498.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0205s
+  Tổng thời gian AI-enhanced: 0.0013s
+  Tổng thời gian giảm: 93.8%
+  Thời gian giảm trung bình mỗi curve: 92.8%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:29:18
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 54445.40
+  Sai số trace min: 16361.00, max: 87723.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0205s
+  Tổng thời gian AI-enhanced: 0.0012s
+  Tổng thời gian giảm: 94.3%
+  Thời gian giảm trung bình mỗi curve: 91.9%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:30:02
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 56411.20
+  Sai số trace min: 29031.00, max: 81312.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0204s
+  Tổng thời gian AI-enhanced: 0.0010s
+  Tổng thời gian giảm: 94.9%
+  Thời gian giảm trung bình mỗi curve: 93.3%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:30:39
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (4 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 4
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 4/4
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 4/4
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 64636.00
+  Sai số trace min: 24680.00, max: 93216.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0205s
+  Tổng thời gian AI-enhanced: 0.0010s
+  Tổng thời gian giảm: 95.3%
+  Thời gian giảm trung bình mỗi curve: 93.6%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:31:34
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (3 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 3
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 3/3
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 3/3
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 46763.33
+  Sai số trace min: 27590.00, max: 66080.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0220s
+  Tổng thời gian AI-enhanced: 0.0011s
+  Tổng thời gian giảm: 95.2%
+  Thời gian giảm trung bình mỗi curve: 94.1%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:33:07
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 48438.20
+  Sai số trace min: 15208.00, max: 79698.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0212s
+  Tổng thời gian AI-enhanced: 0.0011s
+  Tổng thời gian giảm: 94.8%
+  Thời gian giảm trung bình mỗi curve: 94.5%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:35:02
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (4 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 4
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 4/4
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 4/4
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 79471.00
+  Sai số trace min: 53444.00, max: 107634.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0215s
+  Tổng thời gian AI-enhanced: 0.0010s
+  Tổng thời gian giảm: 95.5%
+  Thời gian giảm trung bình mỗi curve: 94.6%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:35:34
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 69511.20
+  Sai số trace min: 23285.00, max: 90288.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0208s
+  Tổng thời gian AI-enhanced: 0.0010s
+  Tổng thời gian giảm: 95.4%
+  Thời gian giảm trung bình mỗi curve: 93.6%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 13:45:09
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Lỗi khi test curve 1: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 2: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 3: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 4: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 5: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 6: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 7: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 8: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 9: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 10: only size-1 arrays can be converted to Python scalars
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (0 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 0
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 0/0
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 0/0
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0231s
+  Tổng thời gian AI-enhanced: 0.0000s
+  Tổng thời gian giảm: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 15:07:10
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Lỗi khi test curve 1: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 2: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 3: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 4: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 5: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 6: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 7: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 8: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 9: only size-1 arrays can be converted to Python scalars
+  ⚠️ Lỗi khi test curve 10: only size-1 arrays can be converted to Python scalars
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (0 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 0
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 0/0
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 0/0
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0210s
+  Tổng thời gian AI-enhanced: 0.0000s
+  Tổng thời gian giảm: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 15:07:28
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Lỗi khi test curve 1: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 2: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 3: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 4: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 5: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 6: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 7: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 8: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 9: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 10: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (0 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 0
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 0/0
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 0/0
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0213s
+  Tổng thời gian AI-enhanced: 0.0000s
+  Tổng thời gian giảm: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 15:09:58
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Lỗi khi test curve 1: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 2: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 3: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 4: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 5: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 6: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 7: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 8: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 9: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+  ⚠️ Lỗi khi test curve 10: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (0 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 0
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 0/0
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 0/0
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0211s
+  Tổng thời gian AI-enhanced: 0.0000s
+  Tổng thời gian giảm: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 15:10:11
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (1 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 1
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 1/1
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 1/1
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 60396.00
+  Sai số trace min: 60396.00, max: 60396.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0207s
+  Tổng thời gian AI-enhanced: 0.0012s
+  Tổng thời gian giảm: 94.2%
+  Thời gian giảm trung bình mỗi curve: 92.8%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 15:11:19
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 64961.20
+  Sai số trace min: 12838.00, max: 98865.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0209s
+  Tổng thời gian AI-enhanced: 0.0012s
+  Tổng thời gian giảm: 94.3%
+  Thời gian giảm trung bình mỗi curve: 92.4%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 15:11:33
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (2 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 2
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 2/2
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 2/2
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 41255.50
+  Sai số trace min: 24019.00, max: 58492.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0215s
+  Tổng thời gian AI-enhanced: 0.0014s
+  Tổng thời gian giảm: 93.5%
+  Thời gian giảm trung bình mỗi curve: 91.1%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 15:17:36
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (3 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 3
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 3/3
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 3/3
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 36967.67
+  Sai số trace min: 20553.00, max: 66245.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0206s
+  Tổng thời gian AI-enhanced: 0.0013s
+  Tổng thời gian giảm: 93.8%
+  Thời gian giảm trung bình mỗi curve: 91.6%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 15:18:30
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+  ⚠️ Không tìm được trace thỏa điều kiện AI, bỏ qua.
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (1 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 1
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 1/1
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 1/1
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 47057.00
+  Sai số trace min: 47057.00, max: 47057.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0211s
+  Tổng thời gian AI-enhanced: 0.0012s
+  Tổng thời gian giảm: 94.3%
+  Thời gian giảm trung bình mỗi curve: 91.4%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 15:19:06
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 48879.20
+  Sai số trace min: 13059.00, max: 99430.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0204s
+  Tổng thời gian AI-enhanced: 0.0010s
+  Tổng thời gian giảm: 95.2%
+  Thời gian giảm trung bình mỗi curve: 93.5%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 16:15:12
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (6 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 6
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 6/6
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 6/6
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 45782.67
+  Sai số trace min: 18962.00, max: 69460.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0201s
+  Tổng thời gian AI-enhanced: 0.0010s
+  Tổng thời gian giảm: 94.9%
+  Thời gian giảm trung bình mỗi curve: 93.3%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 16:15:44
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 44464.00
+  Sai số trace min: 29020.00, max: 60023.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0206s
+  Tổng thời gian AI-enhanced: 0.0010s
+  Tổng thời gian giảm: 95.1%
+  Thời gian giảm trung bình mỗi curve: 94.3%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 16:16:18
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (3 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 3
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 3/3
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 3/3
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 57003.33
+  Sai số trace min: 23224.00, max: 88174.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0283s
+  Tổng thời gian AI-enhanced: 0.0012s
+  Tổng thời gian giảm: 95.7%
+  Thời gian giảm trung bình mỗi curve: 93.2%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 16:17:54
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (5 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 5
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 5/5
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 5/5
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 59657.80
+  Sai số trace min: 39606.00, max: 75111.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0224s
+  Tổng thời gian AI-enhanced: 0.0010s
+  Tổng thời gian giảm: 95.5%
+  Thời gian giảm trung bình mỗi curve: 94.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 16:21:31
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (3 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 3
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 3/3
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 3/3
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 33906.33
+  Sai số trace min: 26253.00, max: 43605.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0202s
+  Tổng thời gian AI-enhanced: 0.0010s
+  Tổng thời gian giảm: 95.0%
+  Thời gian giảm trung bình mỗi curve: 93.4%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 16:24:38
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (6 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 6
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 6/6
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 6/6
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 45447.67
+  Sai số trace min: 12401.00, max: 86866.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0248s
+  Tổng thời gian AI-enhanced: 0.0013s
+  Tổng thời gian giảm: 94.9%
+  Thời gian giảm trung bình mỗi curve: 94.3%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 16:32:44
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+  ⚠️ Lỗi khi test curve 1: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+  ⚠️ Lỗi khi test curve 2: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+  ⚠️ Lỗi khi test curve 3: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+  ⚠️ Lỗi khi test curve 4: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+  ⚠️ Lỗi khi test curve 5: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+  ⚠️ Lỗi khi test curve 6: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+  ⚠️ Lỗi khi test curve 7: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+  ⚠️ Lỗi khi test curve 8: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+  ⚠️ Lỗi khi test curve 9: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+  ⚠️ Lỗi khi test curve 10: in user code:
+
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2341, in predict_function  *
+        return step_function(self, iterator)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2327, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2315, in run_step  **
+        outputs = model.predict_step(data)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/training.py", line 2283, in predict_step
+        return self(x, training=False)
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "/home/toantb@kaopiz.local/.local/lib/python3.8/site-packages/keras/src/engine/input_spec.py", line 298, in assert_input_compatibility
+        raise ValueError(
+
+    ValueError: Input 0 of layer "sequential" is incompatible with the layer: expected shape=(None, 3), found shape=(None, 48)
+
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (0 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 0
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 0/0
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 0/0
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0233s
+  Tổng thời gian AI-enhanced: 0.0000s
+  Tổng thời gian giảm: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 16:34:21
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (3 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 3
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 3/3
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 3/3
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 86309.00
+  Sai số trace min: 71873.00, max: 101651.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0232s
+  Tổng thời gian AI-enhanced: 0.0012s
+  Tổng thời gian giảm: 94.7%
+  Thời gian giảm trung bình mỗi curve: 93.9%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 17:05:55
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (10 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 10
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 10/10
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 10/10
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 43280.60
+  Sai số trace min: 6671.00, max: 108218.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0277s
+  Tổng thời gian AI-enhanced: 0.0017s
+  Tổng thời gian giảm: 93.9%
+  Thời gian giảm trung bình mỗi curve: 91.1%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 19:46:00
+Testing 1000 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 1000 curves) ===
+
+=== Bắt đầu test 1000 curves ===
+
+================================================================================
+Test run at: 2025-12-08 19:46:27
+Testing 10 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 10 curves) ===
+
+=== Bắt đầu test 10 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (10 curves)
+================================================================================
+Tổng số curve test: 10
+Số curve thành công: 10
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 10/10
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 10/10
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 39489.00
+  Sai số trace min: 6125.00, max: 80153.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.0212s
+  Tổng thời gian AI-enhanced: 0.0011s
+  Tổng thời gian giảm: 95.0%
+  Thời gian giảm trung bình mỗi curve: 93.7%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-08 19:47:16
+Testing 100 curves with 32-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 32-bit, 100 curves) ===
+
+=== Bắt đầu test 100 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (91 curves)
+================================================================================
+Tổng số curve test: 100
+Số curve thành công: 91
+Tỷ lệ thành công: 100.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 91/91
+  Tỷ lệ Order đúng: 100.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 91/91
+  Tỷ lệ Trace trong khoảng: 100.0%
+  Sai số trace trung bình: 44578.00
+  Sai số trace min: 118.00, max: 95627.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 0.1467s
+  Tổng thời gian AI-enhanced: 0.0101s
+  Tổng thời gian giảm: 93.1%
+  Thời gian giảm trung bình mỗi curve: 92.9%
+================================================================================
+
