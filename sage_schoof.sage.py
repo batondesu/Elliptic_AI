@@ -127,8 +127,8 @@ AI_WEIGHTS_PATH = '018new_weights.hdf5'
 
 N_MC_SAMPLES = 16
 
-BIT = 128
-CURVES = 200
+BIT = 32
+CURVES = 1000
 OUTPUT_FILE = f'output_ai_schoof{BIT}.txt'
 
 # ------------------------
@@ -250,7 +250,7 @@ def test_curves(curves, bits, f=None):
     log_and_print(f"Tổng số curve test: {CURVES}", f)
     log_and_print(f"Số curve thành công: {stats['successful']}", f)
     if stats['total_curves'] > 0:
-        log_and_print(f"Tỷ lệ thành công: {(stats['successful']/stats['total_curves']*100):.1f}%", f)
+        log_and_print(f"Tỷ lệ thành công: {(stats['successful']/CURVES*100):.1f}%", f)
     log_and_print(f"\n📈 Độ chính xác Order:", f)
     log_and_print(f"  Số curve có Order đúng: {stats['order_correct']}/{stats['total_curves']}", f)
     if stats['total_curves'] > 0:
