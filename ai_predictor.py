@@ -152,7 +152,7 @@ class TracePredictor:
         a_norm = np.clip(a_norm, 0.0, 1.0)
         b_norm = np.clip(b_norm, 0.0, 1.0)
         
-        X = np.array([[p_norm, a_norm, b_norm]] * n_samples, dtype=np.float32)
+        X = np.array([[p_norm, a_norm, b_norm]] * n_samples, dtype=np.float64)
         predictions = np.reshape(self.model.predict(X, verbose=0), n_samples)
         
         trace_norm = np.mean(predictions)
@@ -165,10 +165,10 @@ class TracePredictor:
         trace_pred = float(np.clip(trace_pred, -hasse_half, hasse_half))
         delta = hasse_half * 0.85
 
-        interval = (int(np.clip(trace_pred - delta, -hasse_half, hasse_half)), 
+        epsilon_interval = (int(np.clip(trace_pred - delta, -hasse_half, hasse_half)), 
                    int(np.clip(trace_pred + delta, -hasse_half, hasse_half)))
 
-        return int(round(trace_pred)), interval
+        return int(round(trace_pred)), epsilon_interval
 
     def predict_trace_list(self, test_file=None) :
         raw_data = read_raw_data(test_file if test_file else f'input{BIT_SIZE}_test.txt')
@@ -185,7 +185,7 @@ class TracePredictor:
         hasse_half = 2.0 * sqrt_p
         delta = hasse_half * 0.85
         
-        in_interval = (original_traces >= trace_pred - delta) & (original_traces <= trace_pred + delta)
+        in_epsilon_interval = (original_traces >= trace_pred - delta) & (original_traces <= trace_pred + delta)
         
         return predictions_norm
 

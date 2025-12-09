@@ -100,3 +100,71 @@ Tỷ lệ thành công: 95.0%
   Thời gian giảm trung bình mỗi curve: 89.9%
 ================================================================================
 
+
+================================================================================
+Test run at: 2025-12-09 18:01:09
+Testing 200 curves with 128-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 128-bit, 200 curves) ===
+
+=== Bắt đầu test 200 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (200 curves)
+================================================================================
+Tổng số curve test: 200
+Số curve thành công: 195
+Tỷ lệ thành công: 97.5%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 195/200
+  Tỷ lệ Order đúng: 97.5%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 195/200
+  Tỷ lệ Trace trong khoảng: 97.5%
+  Sai số trace trung bình: 11951070064440625152.00
+  Sai số trace min: 14043307823270064.00, max: 30018395945397547008.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 26.0307s
+  Tổng thời gian AI-enhanced: 0.0261s
+  Tổng thời gian giảm: 99.9%
+  Thời gian giảm trung bình mỗi curve: 99.9%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-09 18:49:44
+Testing 200 curves with 128-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 128-bit, 200 curves) ===
+
+=== Bắt đầu test 200 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (200 curves)
+================================================================================
+Tổng số curve test: 200
+Số curve thành công: 188
+Tỷ lệ thành công: 94.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 188/200
+  Tỷ lệ Order đúng: 94.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 188/200
+  Tỷ lệ Trace trong khoảng: 94.0%
+  Sai số trace trung bình: 12450877835849521152.00
+  Sai số trace min: 273709410200120256.00, max: 30000968914766835712.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 25.6715s
+  Tổng thời gian AI-enhanced: 1.0186s
+  Tổng thời gian giảm: 96.0%
+  Thời gian giảm trung bình mỗi curve: 96.0%
+================================================================================
+

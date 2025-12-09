@@ -66,3 +66,173 @@ Tỷ lệ thành công: 97.0%
   Thời gian giảm trung bình mỗi curve: 93.5%
 ================================================================================
 
+
+================================================================================
+Test run at: 2025-12-09 18:02:10
+Testing 100 curves with 256-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 256-bit, 100 curves) ===
+
+=== Bắt đầu test 100 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (100 curves)
+================================================================================
+Tổng số curve test: 100
+Số curve thành công: 94
+Tỷ lệ thành công: 94.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 94/100
+  Tỷ lệ Order đúng: 94.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 94/100
+  Tỷ lệ Trace trong khoảng: 94.0%
+  Sai số trace trung bình: 201041125998582255256575263419114979328.00
+  Sai số trace min: 3452286985917703327447982891492966400.00, max: 445076518416076122780904481387351900160.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 154.9837s
+  Tổng thời gian AI-enhanced: 0.0169s
+  Tổng thời gian giảm: 100.0%
+  Thời gian giảm trung bình mỗi curve: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-09 18:09:39
+Testing 100 curves with 256-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 256-bit, 100 curves) ===
+
+=== Bắt đầu test 100 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (100 curves)
+================================================================================
+Tổng số curve test: 100
+Số curve thành công: 91
+Tỷ lệ thành công: 91.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 91/100
+  Tỷ lệ Order đúng: 91.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 91/100
+  Tỷ lệ Trace trong khoảng: 91.0%
+  Sai số trace trung bình: 241929978264091118638210109552019374080.00
+  Sai số trace min: 3828341768892221603395654583299604480.00, max: 523935346810361641878666961309025697792.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 165.6085s
+  Tổng thời gian AI-enhanced: 0.0164s
+  Tổng thời gian giảm: 100.0%
+  Thời gian giảm trung bình mỗi curve: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-09 18:15:43
+Testing 100 curves with 256-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 256-bit, 100 curves) ===
+
+=== Bắt đầu test 100 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (100 curves)
+================================================================================
+Tổng số curve test: 100
+Số curve thành công: 93
+Tỷ lệ thành công: 93.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 93/100
+  Tỷ lệ Order đúng: 93.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 93/100
+  Tỷ lệ Trace trong khoảng: 93.0%
+  Sai số trace trung bình: 184528673081995437265347513235409993728.00
+  Sai số trace min: 4821753153860276627550803241480486912.00, max: 557974032469534121146385920461467811840.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 155.9386s
+  Tổng thời gian AI-enhanced: 0.0163s
+  Tổng thời gian giảm: 100.0%
+  Thời gian giảm trung bình mỗi curve: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-09 18:20:02
+Testing 100 curves with 256-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 256-bit, 100 curves) ===
+
+=== Bắt đầu test 100 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (100 curves)
+================================================================================
+Tổng số curve test: 100
+Số curve thành công: 93
+Tỷ lệ thành công: 93.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 93/100
+  Tỷ lệ Order đúng: 93.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 93/100
+  Tỷ lệ Trace trong khoảng: 93.0%
+  Sai số trace trung bình: 232538265535935069392114329841381146624.00
+  Sai số trace min: 2990318263315770468744945152852754432.00, max: 507220618746502393926738371714226323456.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 155.4926s
+  Tổng thời gian AI-enhanced: 0.0169s
+  Tổng thời gian giảm: 100.0%
+  Thời gian giảm trung bình mỗi curve: 100.0%
+================================================================================
+
+
+================================================================================
+Test run at: 2025-12-09 18:34:30
+Testing 100 curves with 256-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 256-bit, 100 curves) ===
+
+=== Bắt đầu test 100 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (100 curves)
+================================================================================
+Tổng số curve test: 100
+Số curve thành công: 96
+Tỷ lệ thành công: 96.0%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 96/100
+  Tỷ lệ Order đúng: 96.0%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 96/100
+  Tỷ lệ Trace trong khoảng: 96.0%
+  Sai số trace trung bình: 236945674073027615940489320224847298560.00
+  Sai số trace min: 1322378657357578747237626240342949888.00, max: 521436339985811146893986327384039620608.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 162.7533s
+  Tổng thời gian AI-enhanced: 2.7654s
+  Tổng thời gian giảm: 98.3%
+  Thời gian giảm trung bình mỗi curve: 98.2%
+================================================================================
+

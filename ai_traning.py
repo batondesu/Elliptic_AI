@@ -126,10 +126,6 @@ model.compile(
 	metrics=['mae']  
 )
 
-print("Đang training...")
-print(f"X_train shape: {X_train.shape}, Y_train shape: {Y_train.shape}")
-print(f"Y_train range: [{Y_train.min():.4f}, {Y_train.max():.4f}]")
-
 callbacks = [
 	EarlyStopping(
 		monitor='loss',

@@ -135,3 +135,37 @@ Tỷ lệ thành công: 94.6%
   Thời gian giảm trung bình mỗi curve: 98.4%
 ================================================================================
 
+
+================================================================================
+Test run at: 2025-12-09 17:59:15
+Testing 500 curves with 64-bit primes
+================================================================================
+
+=== AI-Enhanced Schoof test (p = 64-bit, 500 curves) ===
+
+=== Bắt đầu test 500 curves ===
+
+================================================================================
+📊 THỐNG KÊ TỔNG HỢP (500 curves)
+================================================================================
+Tổng số curve test: 500
+Số curve thành công: 463
+Tỷ lệ thành công: 92.6%
+
+📈 Độ chính xác Order:
+  Số curve có Order đúng: 463/500
+  Tỷ lệ Order đúng: 92.6%
+
+🎯 Độ chính xác Trace:
+  Số curve có Trace trong khoảng AI: 463/500
+  Tỷ lệ Trace trong khoảng: 92.6%
+  Sai số trace trung bình: 2891424159.94
+  Sai số trace min: 7669299.00, max: 7079785228.00
+
+⏱️ Hiệu suất:
+  Tổng thời gian baseline: 3.8236s
+  Tổng thời gian AI-enhanced: 0.0555s
+  Tổng thời gian giảm: 98.5%
+  Thời gian giảm trung bình mỗi curve: 98.5%
+================================================================================
+
